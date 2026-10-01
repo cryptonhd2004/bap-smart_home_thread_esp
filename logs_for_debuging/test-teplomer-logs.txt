@@ -1,0 +1,127 @@
+INFO ESPHome 2026.9.1
+INFO Loaded validated config cache for test-teplomer.yaml, skipping validation.
+INFO Starting log output from 192.168.0.57 using esphome API
+INFO Successfully resolved c6-matter-teplomer @ 192.168.0.57 in 0.000s
+INFO Successfully connected to c6-matter-teplomer @ 192.168.0.57 in 0.018s
+INFO Successful handshake with c6-matter-teplomer @ 192.168.0.57 in 1.258s
+[23:35:50.773][I][app:151]: ESPHome version 2026.9.1 compiled on 2026-09-30 22:56:17 +0200
+[23:35:50.773][I][app:158]: ESP32 Chip: ESP32-C6 rev0.2, 1 core(s)
+[23:35:50.773][C][logger:216]: Logger:
+[23:35:50.773][C][logger:216]:   Max Level: DEBUG
+[23:35:50.773][C][logger:216]:   Initial Level: DEBUG
+[23:35:50.773][C][logger:223]:   Log Baud Rate: 115200
+[23:35:50.773][C][logger:223]:   Hardware UART: USB_SERIAL_JTAG
+[23:35:50.773][C][logger:232]:   Task Log Buffer Size: 768 bytes
+[23:35:50.795][C][i2c:092]: I2C Bus:
+[23:35:50.799][C][i2c:093]:   SDA Pin: GPIO22
+[23:35:50.799][C][i2c:093]:   SCL Pin: GPIO23
+[23:35:50.799][C][i2c:093]:   Frequency: 50000 Hz
+[23:35:50.799][C][i2c:103]:   Recovery: bus successfully recovered
+[23:35:50.799][C][i2c:113]: Results from bus scan:
+[23:35:50.799][C][i2c:119]: Found device at address 0x77
+[23:35:50.817][C][bmp085.sensor:042]: BMP085:
+[23:35:50.817][C][bmp085.sensor:043]:   Address: 0x77
+[23:35:50.817][C][bmp085.sensor:340]:   Update Interval: 30.000s
+[23:35:50.817][C][bmp085.sensor:017]:   Temperature 'Teplota'
+[23:35:50.817][C][bmp085.sensor:017]:     State Class: 'measurement'
+[23:35:50.817][C][bmp085.sensor:017]:     Unit of Measurement: '°C'
+[23:35:50.817][C][bmp085.sensor:017]:     Accuracy Decimals: 1
+[23:35:50.821][C][bmp085.sensor:165]:     Device Class: 'temperature'
+[23:35:50.840][C][bmp085.sensor:017]:   Pressure 'Tlak'
+[23:35:50.840][C][bmp085.sensor:017]:     State Class: 'measurement'
+[23:35:50.840][C][bmp085.sensor:017]:     Unit of Measurement: 'hPa'
+[23:35:50.840][C][bmp085.sensor:017]:     Accuracy Decimals: 1
+[23:35:50.841][C][bmp085.sensor:165]:     Device Class: 'pressure'
+[23:35:50.841][C][network:050]: Network:
+[23:35:50.841][C][network:050]:   TCP send buffer: 5760 bytes
+[23:35:50.857][C][wifi:1582]: WiFi:
+[23:35:50.857][C][wifi:1582]:   Local MAC: 10:BD:A3:99:A6:1C
+[23:35:50.857][C][wifi:1582]:   Connected: YES
+[23:35:50.862][C][wifi:1286]:   IP Address: 192.168.0.57
+[23:35:50.862][C][wifi:1286]:   IP Address: fe80::12bd:a3ff:fe99:a61c
+[23:35:50.862][C][wifi:1297]:   SSID: 'IoT_my_ass'
+[23:35:50.862][C][wifi:1297]:   BSSID: 62:23:51:41:98:93
+[23:35:50.862][C][wifi:1297]:   Hostname: 'c6-matter-teplomer'
+[23:35:50.862][C][wifi:1297]:   Signal strength: -59 dB ▂▄▆█
+[23:35:50.862][C][wifi:1297]:   Channel: 9
+[23:35:50.862][C][wifi:1297]:   Subnet: 255.255.255.0
+[23:35:50.862][C][wifi:1297]:   Gateway: 192.168.0.1
+[23:35:50.862][C][wifi:1297]:   DNS1: 192.168.0.36
+[23:35:50.862][C][wifi:1297]:   DNS2: 192.168.0.36
+[23:35:50.881][C][esphome.ota:125]: Over-The-Air updates:
+[23:35:50.881][C][esphome.ota:125]:   Address: c6-matter-teplomer.local:3232
+[23:35:50.881][C][esphome.ota:125]:   Version: 2
+[23:35:50.881][C][esphome.ota:125]:   Encryption: offered, plaintext accepted
+[23:35:50.916][C][safe_mode:058]: Safe Mode:
+[23:35:50.916][C][safe_mode:058]:   Successful after: 60s
+[23:35:50.916][C][safe_mode:058]:   Invoke after: 10 attempts
+[23:35:50.916][C][safe_mode:058]:   Duration: 300s
+[23:35:50.916][C][safe_mode:079]:   Bootloader rollback: support unknown
+[23:35:50.917][C][api:293]: Server:
+[23:35:50.917][C][api:293]:   Address: c6-matter-teplomer.local:6053
+[23:35:50.917][C][api:293]:   Listen backlog: 4
+[23:35:50.917][C][api:293]:   Max connections: 5
+[23:35:50.921][C][api:300]:   Noise encryption: YES
+[23:35:50.952][C][mdns:259]: mDNS:
+[23:35:50.952][C][mdns:259]:   Hostname: c6-matter-teplomer
+[23:35:50.952][C][matter:371]: Matter:
+[23:35:50.952][C][matter:394]:   SetupQRCode: MT:Y.K90C0R15MH7Y3CO00
+[23:35:50.956][C][matter:395]:   QR URL: https://project-chip.github.io/connectedhomeip/qrcode.html?data=MT:Y.K90C0R15MH7Y3CO00
+[23:35:50.956][C][matter:407]:   Manual pairing code: 16503418483
+[23:35:50.956][C][matter:412]:   Commissioning window: open
+[23:35:50.956][C][matter:419]:   Fabrics: none
+[23:35:54.481][D][matter.event:156][CHIP]: Interface IP Address changed
+[23:35:54.488][D][matter.dnssd:276][CHIP]: Remove services
+[23:35:54.488][D][matter.dnssd:231][CHIP]: Publishing 0A11690F24F84672._matterc._udp as 10BDA399A61C:5540
+[23:35:54.490][D][matter.dnssd:294][CHIP]: Finalize service update
+[23:36:17.117][D][bmp085.sensor:077]: Got Temperature=25.6 °C
+[23:36:17.148][D][bmp085.sensor:123]: Got Pressure=993.0 hPa
+[23:36:17.217][S][sensor]: 'Teplota' >> 25.6 °C
+[23:36:17.217][S][sensor]: 'Tlak' >> 993.0 hPa
+[23:36:24.414][D][matter.dnssd:276][CHIP]: Remove services
+[23:36:24.422][D][matter.dnssd:294][CHIP]: Finalize service update
+[23:36:24.422][I][matter.event:200][CHIP]: Secure session established: PASE node=0xfffffffb00000000 fabric=0 session=55002
+[23:36:24.517][I][matter.event:165][CHIP]: Commissioning session started
+[23:36:24.517][I][matter.event:174][CHIP]: Commissioning window closed
+[23:36:26.761][D][matter.dnssd:231][CHIP]: Publishing 66658C613F8702CB-B71712CC439A36E5._matter._tcp as 10BDA399A61C:5540
+[23:36:26.772][I][matter.event:184][CHIP]: Fabric is updated
+[23:36:28.062][D][esp-idf:000][CHIP]: The device does not support GetClock_RealTimeMS() API: 6c.  Falling back to Last Known Good UTC Time
+[23:36:28.154][I][matter.event:200][CHIP]: Secure session established: CASE node=0x8baf7900364ac58c fabric=1 session=55003
+[23:36:28.287][I][matter.event:187][CHIP]: Fabric is committed
+[23:36:28.291][D][matter.dnssd:276][CHIP]: Remove services
+[23:36:28.294][D][matter.dnssd:231][CHIP]: Publishing 66658C613F8702CB-B71712CC439A36E5._matter._tcp as 10BDA399A61C:5540
+[23:36:28.296][D][matter.dnssd:294][CHIP]: Finalize service update
+[23:36:28.298][I][matter.event:159][CHIP]: Commissioning complete
+[23:36:28.302][I][matter.event:174][CHIP]: Commissioning window closed
+[23:36:28.496][D][matter.dnssd:276][CHIP]: Remove services
+[23:36:28.504][D][matter.dnssd:231][CHIP]: Publishing 66658C613F8702CB-B71712CC439A36E5._matter._tcp as 10BDA399A61C:5540
+[23:36:28.504][D][matter.dnssd:231][CHIP]: Publishing 63CDBF7F87ED1B3F._matterc._udp as 10BDA399A61C:5540
+[23:36:28.510][D][matter.dnssd:294][CHIP]: Finalize service update
+[23:36:28.514][I][matter.event:171][CHIP]: Commissioning window opened
+[23:36:28.810][D][matter.dnssd:276][CHIP]: Remove services
+[23:36:28.814][D][matter.dnssd:231][CHIP]: Publishing 66658C613F8702CB-B71712CC439A36E5._matter._tcp as 10BDA399A61C:5540
+[23:36:28.820][D][matter.dnssd:294][CHIP]: Finalize service update
+[23:36:28.823][I][matter.event:200][CHIP]: Secure session established: PASE node=0xfffffffb00000000 fabric=0 session=55005
+[23:36:28.830][I][matter.event:165][CHIP]: Commissioning session started
+[23:36:28.835][I][matter.event:174][CHIP]: Commissioning window closed
+[23:36:29.004][D][esp-idf:000][CHIP]: Failsafe timer expired
+[23:36:29.007][D][esp-idf:000][CHIP]: Commissioning failed (attempt 1): 32
+[23:36:29.012][D][matter.dnssd:276][CHIP]: Remove services
+[23:36:29.014][D][matter.dnssd:231][CHIP]: Publishing 66658C613F8702CB-B71712CC439A36E5._matter._tcp as 10BDA399A61C:5540
+[23:36:29.019][D][matter.dnssd:231][CHIP]: Publishing 63CDBF7F87ED1B3F._matterc._udp as 10BDA399A61C:5540
+[23:36:29.025][D][matter.dnssd:294][CHIP]: Finalize service update
+[23:36:29.028][D][esp-idf:000][CHIP]: OpCreds: Got FailSafeTimerExpired
+[23:36:29.030][D][esp-idf:000][CHIP]: OpCreds: Proceeding to FailSafeCleanup on fail-safe expiry!
+[23:36:29.032][I][matter.event:162][CHIP]: Commissioning failed, fail safe timer expired
+[23:36:29.033][I][matter.event:171][CHIP]: Commissioning window opened
+[23:36:29.036][D][esp-idf:000][CHIP]: Data received on an unknown session (LSID=55005). Dropping it!
+[23:36:43.441][I][safe_mode:154]: Boot seems successful; resetting boot loop counter
+[23:36:47.118][D][bmp085.sensor:077]: Got Temperature=25.6 °C
+[23:36:47.150][D][bmp085.sensor:123]: Got Pressure=993.0 hPa
+[23:36:47.218][S][sensor]: 'Teplota' >> 25.6 °C
+[23:36:47.218][S][sensor]: 'Tlak' >> 993.0 hPa
+[23:36:47.474][D][preferences:254]: Writing 1 items: 0 cached, 1 written, 0 failed
+[23:37:17.117][D][bmp085.sensor:077]: Got Temperature=25.7 °C
+[23:37:17.162][D][bmp085.sensor:123]: Got Pressure=993.0 hPa
+[23:37:17.214][S][sensor]: 'Teplota' >> 25.7 °C
+[23:37:17.214][S][sensor]: 'Tlak' >> 993.0 hPa

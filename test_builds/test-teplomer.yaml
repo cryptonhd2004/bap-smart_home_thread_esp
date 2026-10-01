@@ -1,0 +1,74 @@
+esphome:
+  name: c6-matter-teplomer
+
+esp32:
+  variant: ESP32C6
+  framework:
+    type: esp-idf
+  # u ESPHome starsiho nez 2026.9.0 odkomentuj:
+  # toolchain: platformio
+
+external_components:
+  - source: github://DavidvtWout/esphome-matter@main
+
+logger:
+
+api:
+  encryption:
+    key: "mEpOiD1VZjzaOywd3yUhiYHg0DigsvcLSUGwlPcFs6Q="
+
+ota:
+  - platform: esphome
+
+network:
+  enable_ipv6: true
+
+openthread:
+  device_type: FTD
+  tlv: "0E080000000000010000000300000F4A0300001235060004001FFFE002080453941D7541003B0708FD978DB051298A07051077FABC98EE0421AFE411E3312B3D8AE0030E68612D7468726561642D32386435010228D50410396CF4DED6E2987D22B4919D049186540C0402A0F7F8"
+
+i2c:
+  sda: GPIO22
+  scl: GPIO23
+  scan: true
+
+sensor:
+  - platform: bmp085
+    temperature:
+      name: "Teplota"
+      id: bmp_temp
+    pressure:
+      name: "Tlak"
+      id: bmp_press
+    update_interval: 30s
+
+output:
+  - platform: gpio
+    pin:
+      number: GPIO15
+      inverted: true
+    id: user_led_output
+
+light:
+  - platform: binary
+    name: "Uzivatelska LED"
+    id: user_led
+    output: user_led_output
+
+matter:
+  vendor_name: "David Sindelar - BP VUT"
+  vendor_id: 0xFFF1
+  product_name: "Thread BMP180 teplomer"
+  product_id: 0x8000
+  hardware_version: 1
+  hardware_version_string: "ESP32-C6 XIAO + BMP180 breadboard v1"
+  endpoints:
+    1:
+      temperature_sensor:
+        temperature: bmp_temp
+    2:
+      pressure_sensor:
+        pressure: bmp_press
+    3:
+      on_off_light:
+        light_id: user_led
