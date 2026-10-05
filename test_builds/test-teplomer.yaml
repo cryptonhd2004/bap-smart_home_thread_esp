@@ -1,5 +1,5 @@
 esphome:
-  name: c6-matter-teplomer
+  name: teplomer-thread
 
 esp32:
   variant: ESP32C6
@@ -55,6 +55,16 @@ light:
     id: user_led
     output: user_led_output
 
+  - platform: esp32_rmt_led_strip
+    name: "RGB pasek"
+    id: rgb_strip
+    pin: GPIO18
+    num_leds: 8
+    chipset: WS2812
+    channel_colors: GRB
+    restore_mode: ALWAYS_OFF
+    default_transition_length: 0s
+
 matter:
   vendor_name: "David Sindelar - BP VUT"
   vendor_id: 0xFFF1
@@ -72,3 +82,6 @@ matter:
     3:
       on_off_light:
         light_id: user_led
+    4:
+      extended_color_light:
+        light_id: rgb_strip
