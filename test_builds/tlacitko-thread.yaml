@@ -1,0 +1,70 @@
+esphome:
+  name: chytre-tlacitko-thread
+
+esp32:
+  variant: ESP32C6
+  framework:
+    type: esp-idf
+  # u ESPHome starsiho nez 2026.9.0 odkomentuj:
+  # toolchain: platformio
+
+external_components:
+  - source: github://DavidvtWout/esphome-matter@main
+
+logger:
+
+api:
+  encryption:
+    key: !secret test_teplomer__encryption_key
+ota:
+  - platform: esphome
+
+network:
+  enable_ipv6: true
+
+openthread:
+  device_type: MTD            # not_router_role
+  tlv: 0E080000000000010000000300000F4A0300001235060004001FFFE002080453941D7541003B0708FD978DB051298A07051077FABC98EE0421AFE411E3312B3D8AE0030E68612D7468726561642D32386435010228D50410396CF4DED6E2987D22B4919D049186540C0402A0F7F8
+
+matter:
+  vendor_name: "David Sindelar - BP VUT"
+  vendor_id: 0xFFF1
+  product_name: "Thread smart button"
+  product_id: 0x8000
+  hardware_version: 1
+  hardware_version_string: "XIAO ESP32-C6 + button v1"
+  endpoints:
+    1:
+      id: button_ep
+      generic_switch:
+        with_features:
+          - momentary_switch
+          - momentary_switch_release
+
+binary_sensor:
+  - platform: gpio
+    id: btn
+    name: "Tlačítko (GPIO)"
+    pin:
+      number: GPIO1           # D1; spínač 3V3 -> D1, 100k pull-down na GND
+      mode:
+        input: true
+    filters:
+      - delayed_on: 20ms
+      - delayed_off: 20ms
+    on_press:
+      - matter.set_attribute:
+          path: button_ep.switch.current_position
+          value: 1
+      - matter.send_event:
+          path: button_ep.switch.initial_press
+          fields:
+            new_position: 1
+    on_release:
+      - matter.set_attribute:
+          path: button_ep.switch.current_position
+          value: 0
+      - matter.send_event:
+          path: button_ep.switch.short_release
+          fields:
+            previous_position: 1

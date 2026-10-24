@@ -1,13 +1,29 @@
-"""Porovnani teplotnich cidel: ALPSTUGA (SEN63C) vs BMP180 vs DHT11.
+"""Univerzalni skript pro porovnani cidel (teplota, vlhkost) z exportu Home Assistantu.
 
-Vstup:  CSV z Home Assistantu se sloupci entity_id, state, last_changed.
-Vystup: grafy (PNG, PDF), tabulka pro LaTeX a souhrn statistik ve slozce
-        'output' umistene vedle tohoto skriptu.
+Vstup:  CSV se sloupci entity_id, state, last_changed.
+Vystup: slozka 'output' (nebo --vystup): grafy (PNG, PDF), souhrny (CSV)
+        a tabulky pro LaTeX. Statistiky jsou dvoje: z celeho okna a jen
+        z "klidnych" minut (bez rychlych zmen, napr. vetrani).
 
-Pouziti: python srovnani_cidel.py [cesta_k_csv]
+Pouziti:
+  python srovnani_cidel.py                       (final_comparison.csv vedle skriptu)
+  python srovnani_cidel.py data.csv
+  python srovnani_cidel.py data.csv --od "2026-10-26 08:00" --do "2026-10-27 08:00" --ustaleni 2
+  python srovnani_cidel.py data.csv --vystup output_krabice --ref S --vsechny-dvojice
+
+Volby:
+  --od, --do         okno mereni (mistni cas); bez nich cely spolecny zaznam
+  --ustaleni HODIN   prvnich N hodin okna se do statistik nepocita (v grafu sede)
+  --ref KOD          referencni cidlo (vychozi S = SHT40)
+  --vsechny-dvojice  porovnat vsechny dvojice, ne jen cidla proti reference
+  --vystup SLOZKA    vystupni slozka (vychozi 'output' vedle skriptu)
+
+Pridani cidla = jeden radek v seznamu 'sensors' dane veliciny.
 Zavislosti: pip install pandas numpy matplotlib
 """
+import argparse
 import sys
+import traceback
 from pathlib import Path
 
 import numpy as np
@@ -17,179 +33,233 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 HERE = Path(__file__).resolve().parent
-CSV = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "alpstuga_vs_bmp180_vs_dht11.csv"
-OUT = HERE / "output"
 TZ = "Europe/Prague"
-STATS_FROM = "2026-10-10 00:00"   # statistiky bez prechodoveho deje (vetrani)
-TOL = 0.7                         # tolerance SEN63C (max.) v C
-NAMES = {"A": "ALPSTUGA (SEN63C)", "B": "BMP180", "D": "DHT11"}
-MAP = {"alpstuga": "A", "teplota_1": "B", "teplota_5": "D"}
-PAIRS = (("B", "A"), ("D", "A"), ("D", "B"))
+
+QUANTITIES = {
+    "teplota": {
+        "unit": "°C", "unit_tex": r"\si{\celsius}", "tol": 0.7,
+        "calm_max_change": 0.15,   # max. zmena za 10 min v "klidnych" minutach
+        "sensors": [   # (kod, text v entity_id, popisek)
+            ("S", "teplota_6", "SHT40"),
+            ("A", "alpstuga_air_quality_monitor_teplota", "ALPSTUGA (SEN63C)"),
+            ("B", "teplota_1", "BMP180"),
+            ("D", "teplota_5", "DHT11"),
+            ("F", "timmerflotte_temp_hmd_sensor_teplota", "TIMMERFLOTTE"),
+        ],
+    },
+    "vlhkost": {
+        "unit": "%RH", "unit_tex": r"\%RH", "tol": 3.0,
+        "calm_max_change": 1.0,
+        "sensors": [
+            ("S", "vlhkost_vzduchu_7", "SHT40"),
+            ("A", "alpstuga_air_quality_monitor_vlhkost", "ALPSTUGA (SEN63C)"),
+            ("D", "vlhkost_vzduchu_8", "DHT11"),
+            ("F", "timmerflotte_temp_hmd_sensor_vlhkost", "TIMMERFLOTTE"),
+        ],
+    },
+}
 
 
-def load(path):
+def read_csv(path):
     df = pd.read_csv(path)
-    # cas jako naivni mistni cas (bez tz sloupce) - obchazi pad pandas na Windows
+    # naivni mistni cas (bez tz) - obchazi problemy pandas na Windows
     t = (pd.to_datetime(df["last_changed"], utc=True)
          .dt.tz_convert(TZ).dt.tz_localize(None))
     v = pd.to_numeric(df["state"], errors="coerce")
-    ent = df["entity_id"].astype(str)
-    series = {}
-    for key, code in MAP.items():
-        mask = (ent.str.contains(key) & v.notna()).to_numpy()
-        if not mask.any():
-            sys.exit(f"V CSV nenalezena entita obsahujici '{key}' (upravte MAP).")
-        s = pd.Series(v.to_numpy()[mask],
-                      index=pd.DatetimeIndex(t.to_numpy()[mask]))
-        series[code] = s[~s.index.duplicated()]
-    return series
+    return t, v, df["entity_id"].astype(str).str.lower()
 
 
-def align(series, freq="1min"):
-    start = max(s.index.min() for s in series.values()).ceil(freq)
-    end = min(s.index.max() for s in series.values())
-    idx = pd.date_range(start, end, freq=freq)
+def load(t, v, ent, sensors):
+    out = {}
+    for code, key, _ in sensors:
+        m = (ent.str.contains(key.lower()) & v.notna()).to_numpy()
+        if not m.any():
+            sys.exit(f"V CSV nenalezena entita obsahujici '{key}' "
+                     f"(upravte QUANTITIES).")
+        s = pd.Series(v.to_numpy()[m], index=pd.DatetimeIndex(t.to_numpy()[m]))
+        out[code] = s[~s.index.duplicated()]
+    return out
+
+
+def align(series, start, end, freq="1min"):
+    # HA uklada jen zmeny -> mezi zmenami plati posledni zname hodnota (ffill)
+    lo = max(s.index.min() for s in series.values())
+    hi = min(s.index.max() for s in series.values())
+    if start is not None:
+        lo = max(lo, start)
+    if end is not None:
+        hi = min(hi, end)
+    idx = pd.date_range(lo.ceil(freq), hi, freq=freq)
     cols = {k: s.reindex(s.index.union(idx)).ffill().reindex(idx)
             for k, s in series.items()}
     return pd.DataFrame(cols).dropna()
 
 
-def stats_row(x, y):
-    d = (x - y).dropna()
+def make_pairs(codes, ref, all_pairs):
+    if all_pairs:
+        return [(x, y) for i, x in enumerate(codes) for y in codes[:i]]
+    return [(c, ref) for c in codes if c != ref]
+
+
+def stats_row(x, y, tol):
+    d = x - y
     m, s = d.mean(), d.std(ddof=1)
+    slope, icpt = np.polyfit(y, x, 1) if y.std() > 0 else (np.nan, np.nan)
     return {"n": len(d), "mean": m, "median": d.median(), "std": s,
             "loa_lo": m - 1.96 * s, "loa_hi": m + 1.96 * s,
             "rmse": float(np.sqrt((d ** 2).mean())),
-            "within": (d.abs() <= TOL).mean() * 100,
-            "r": x.corr(y)}
+            "within": (d.abs() <= tol).mean() * 100,
+            "r": x.corr(y), "slope": slope, "intercept": icpt}
 
 
-def save(fig, name):
-    fig.savefig(OUT / f"{name}.png", dpi=200)
-    fig.savefig(OUT / f"{name}.pdf")
+def grid(n):
+    cols = 2 if n == 4 else min(n, 3)
+    return int(np.ceil(n / cols)), cols
+
+
+def save(fig, out, name):
+    fig.savefig(out / f"{name}.png", dpi=200)
+    fig.savefig(out / f"{name}.pdf")
     plt.close(fig)
 
 
-def plot_timeseries(R):
+def plot_timeseries(R, settle_end, q, cfg, names, pairs, out):
+    u = cfg["unit"]
     fig, ax = plt.subplots(2, 1, figsize=(10, 7), sharex=True)
-    for c in "ABD":
-        ax[0].plot(R.index, R[c], label=NAMES[c], lw=1)
-    ax[0].set_ylabel("Teplota [°C]")
-    ax[0].set_title("Časový průběh teploty")
-    ax[0].legend()
-    ax[0].grid(alpha=.3)
-    for x, y in PAIRS:
+    for c in R.columns:
+        ax[0].plot(R.index, R[c], lw=1, label=names[c])
+    ax[0].set_ylabel(f"{q.capitalize()} [{u}]")
+    ax[0].set_title(f"Časový průběh: {q}")
+    for x, y in pairs:
         ax[1].plot(R.index, R[x] - R[y], lw=1,
-                   label=f"{NAMES[x]} − {NAMES[y]}")
+                   label=f"{names[x]} − {names[y]}")
     ax[1].axhline(0, color="k", lw=.5)
-    ax[1].set_ylabel("Rozdíl [°C]")
+    ax[1].set_ylabel(f"Rozdíl [{u}]")
     ax[1].set_xlabel("Čas (místní)")
-    ax[1].legend()
-    ax[1].grid(alpha=.3)
+    for a in ax:
+        if settle_end > R.index.min():
+            a.axvspan(R.index.min(), settle_end, color="gray", alpha=.2,
+                      label="ustalování" if a is ax[0] else None)
+        a.grid(alpha=.3)
+        a.legend(fontsize=8)
     fig.autofmt_xdate()
     fig.tight_layout()
-    save(fig, "casovy_prubeh")
+    save(fig, out, f"casovy_prubeh_{q}")
 
 
-def plot_diurnal(R):
+def plot_diurnal(Q, q, cfg, names, pairs, out):
     fig, ax = plt.subplots(figsize=(8, 4))
-    for x, y in (("B", "A"), ("D", "A")):
-        med = (R[x] - R[y]).groupby(R.index.hour).median()
+    for x, y in pairs:
+        med = (Q[x] - Q[y]).groupby(Q.index.hour).median()
         ax.plot(med.index, med.values, marker="o",
-                label=f"{NAMES[x]} − {NAMES[y]}")
+                label=f"{names[x]} − {names[y]}")
     ax.axhline(0, color="k", lw=.5)
     ax.set_xlabel("Hodina dne")
-    ax.set_ylabel("Medián rozdílu [°C]")
-    ax.set_title("Denní chod rozdílu")
-    ax.legend()
+    ax.set_ylabel(f"Medián rozdílu [{cfg['unit']}]")
+    ax.set_title(f"Denní chod rozdílu: {q}")
+    ax.legend(fontsize=8)
     ax.grid(alpha=.3)
     fig.tight_layout()
-    save(fig, "denni_chod")
+    save(fig, out, f"denni_chod_{q}")
 
 
-def plot_bland_altman(Q):
-    fig, axs = plt.subplots(1, 3, figsize=(14, 4.2), sharey=True)
-    for ax, (x, y) in zip(axs, PAIRS):
-        mean = (Q[x] + Q[y]) / 2
-        d = Q[x] - Q[y]
-        m, s = d.mean(), d.std(ddof=1)
-        ax.scatter(mean, d, s=4, alpha=.35)
-        ax.axhline(m, color="r", label=f"průměr {m:+.2f} °C")
-        ax.axhline(m + 1.96 * s, color="gray", ls="--", label="±1,96 s")
-        ax.axhline(m - 1.96 * s, color="gray", ls="--")
-        ax.set_title(f"{NAMES[x]} − {NAMES[y]}")
-        ax.set_xlabel("Průměr obou čidel [°C]")
+def plot_box(Q, q, cfg, names, pairs, suffix, out):
+    fig, ax = plt.subplots(figsize=(max(6, 1.6 * len(pairs) + 2), 4.5))
+    ax.boxplot([Q[x] - Q[y] for x, y in pairs], showfliers=False)
+    ax.set_xticks(range(1, len(pairs) + 1))
+    ax.set_xticklabels([f"{names[x]}\n− {names[y]}" for x, y in pairs],
+                       fontsize=8)
+    ax.axhline(0, color="k", lw=.5)
+    ax.set_ylabel(f"Rozdíl [{cfg['unit']}]")
+    ax.set_title(f"Rozdělení rozdílů: {q}")
+    ax.grid(alpha=.3, axis="y")
+    fig.tight_layout()
+    save(fig, out, f"boxplot_{q}{suffix}")
+
+
+def plot_regression(Q, q, cfg, names, pairs, suffix, out):
+    u = cfg["unit"]
+    rows, cols = grid(len(pairs))
+    fig, axs = plt.subplots(rows, cols, figsize=(4.7 * cols, 4.4 * rows),
+                            squeeze=False)
+    flat = axs.ravel()
+    for ax, (x, y) in zip(flat, pairs):
+        ax.scatter(Q[y], Q[x], s=4, alpha=.35)
+        lo, hi = min(Q[y].min(), Q[x].min()), max(Q[y].max(), Q[x].max())
+        ax.plot([lo, hi], [lo, hi], "k--", lw=.8, label="y = x")
+        if Q[y].std() > 0:
+            k, b = np.polyfit(Q[y], Q[x], 1)
+            xs = np.array([Q[y].min(), Q[y].max()])
+            ax.plot(xs, k * xs + b, "r", lw=1.2,
+                    label=f"fit: y = {k:.2f}x {b:+.2f}")
+        ax.set_xlabel(f"{names[y]} [{u}]")
+        ax.set_ylabel(f"{names[x]} [{u}]")
         ax.grid(alpha=.3)
         ax.legend(fontsize=8)
-    axs[0].set_ylabel("Rozdíl [°C]")
+    for ax in flat[len(pairs):]:
+        ax.axis("off")
     fig.tight_layout()
-    save(fig, "bland_altman")
+    save(fig, out, f"regrese_{q}{suffix}")
 
 
-def latex_table(rows):
+def plot_bland_altman(Q, q, cfg, names, pairs, suffix, out):
+    u = cfg["unit"]
+    rows, cols = grid(len(pairs))
+    fig, axs = plt.subplots(rows, cols, figsize=(4.7 * cols, 4.2 * rows),
+                            sharey=True, squeeze=False)
+    flat = axs.ravel()
+    for ax, (x, y) in zip(flat, pairs):
+        mean, d = (Q[x] + Q[y]) / 2, Q[x] - Q[y]
+        m, s = d.mean(), d.std(ddof=1)
+        ax.scatter(mean, d, s=4, alpha=.35)
+        ax.axhline(m, color="r", label=f"průměr {m:+.2f} {u}")
+        ax.axhline(m + 1.96 * s, color="gray", ls="--", label="±1,96 s")
+        ax.axhline(m - 1.96 * s, color="gray", ls="--")
+        ax.set_title(f"{names[x]} − {names[y]}", fontsize=10)
+        ax.set_xlabel(f"Průměr obou čidel [{u}]")
+        ax.grid(alpha=.3)
+        ax.legend(fontsize=8)
+    for ax in flat[len(pairs):]:
+        ax.axis("off")
+    for r in range(rows):
+        axs[r, 0].set_ylabel(f"Rozdíl [{u}]")
+    fig.tight_layout()
+    save(fig, out, f"bland_altman_{q}{suffix}")
+
+
+def latex_table(rows, q, cfg, suffix, extra):
     f = lambda v, p=2: f"{v:.{p}f}".replace(".", ",")
-    lines = [
-        r"\begin{table}[ht]",
-        r"\centering",
-        r"\caption{Porovnání teplotních čidel (rozdíl prvního a druhého čidla)}",
-        r"\label{tab:porovnani-cidel}",
-        r"\begin{tabular}{lrrrrrr}",
-        r"\hline",
-        r"Dvojice & $n$ & $\bar{d}$ [\si{\celsius}] & $s_d$ [\si{\celsius}] "
-        r"& LoA [\si{\celsius}] & RMSE [\si{\celsius}] "
-        r"& $|d|\le 0{,}7$ [\%] \\",
-        r"\hline",
-    ]
+    ut, tol = cfg["unit_tex"], str(cfg["tol"]).replace(".", "{,}")
+    L = [r"\begin{table}[ht]", r"\centering",
+         rf"\caption{{Porovnání čidel ({q}), rozdíl prvního a druhého čidla"
+         rf"{extra}}}",
+         rf"\label{{tab:porovnani-{q}{suffix}}}",
+         r"\begin{tabular}{lrrrrrrr}", r"\hline",
+         rf"Dvojice & $n$ & $\bar{{d}}$ [{ut}] & $s_d$ [{ut}] & LoA [{ut}] "
+         rf"& RMSE [{ut}] & $|d|\le {tol}$ [\%] & směrnice \\", r"\hline"]
     for name, r in rows:
         loa = f"{f(r['loa_lo'])} až {f(r['loa_hi'])}"
-        lines.append(f"{name} & {r['n']} & {f(r['mean'])} & {f(r['std'])} & "
-                     f"{loa} & {f(r['rmse'])} & {f(r['within'], 1)} \\\\")
-    lines += [r"\hline", r"\end{tabular}", r"\end{table}"]
-    return "\n".join(lines)
+        L.append(f"{name} & {r['n']} & {f(r['mean'])} & {f(r['std'])} & {loa} "
+                 f"& {f(r['rmse'])} & {f(r['within'], 1)} & {f(r['slope'])} \\\\")
+    L += [r"\hline", r"\end{tabular}", r"\end{table}"]
+    return "\n".join(L)
 
 
-def main():
-    if not CSV.exists():
-        sys.exit(f"CSV nenalezeno: {CSV}")
-    OUT.mkdir(exist_ok=True)
-
-    R = align(load(CSV))
+def process(q, cfg, t, v, ent, a, out):
+    names = {c: n for c, _, n in cfg["sensors"]}
+    codes = [c for c, _, _ in cfg["sensors"]]
+    if a.ref not in codes:
+        sys.exit(f"Referencni cidlo '{a.ref}' neni v seznamu: {codes}")
+    pairs = make_pairs(codes, a.ref, a.vsechny_dvojice)
+    start = pd.Timestamp(a.od) if a.od else None
+    end = pd.Timestamp(a.do) if a.do else None
+    R = align(load(t, v, ent, cfg["sensors"]), start, end)
     if R.empty:
-        sys.exit("Zadna spolecna data pro vsechna tri cidla.")
-    Q = R[STATS_FROM:]
-    if Q.empty:
-        print("STATS_FROM je mimo rozsah dat, pouzivam cely zaznam.")
-        Q = R
-
-    plot_timeseries(R)
-    plot_diurnal(R)
-    plot_bland_altman(Q)
-
-    rows = [(f"{NAMES[x]} − {NAMES[y]}", stats_row(Q[x], Q[y]))
-            for x, y in PAIRS]
-    (OUT / "tabulka_porovnani.tex").write_text(latex_table(rows),
-                                               encoding="utf-8")
-    pd.DataFrame({n: r for n, r in rows}).T.round(3).to_csv(
-        OUT / "souhrn_statistik.csv")
-
-    print(latex_table(rows))
-    print("\nHotovo, vystup je v:", OUT)
-
-
-if __name__ == "__main__":
-    import traceback
-    try:
-        if hasattr(sys.stdout, "reconfigure"):
-            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-        if hasattr(sys.stderr, "reconfigure"):
-            sys.stderr.reconfigure(encoding="utf-8", errors="replace")
-        print("Spoustim, CSV:", CSV)
-        main()
-    except SystemExit as e:
-        print("KONEC:", e)
-        raise
-    except Exception:
-        err = traceback.format_exc()
-        (HERE / "chyba.log").write_text(err, encoding="utf-8")
-        print(err)
-        raise
+        sys.exit(f"Ve zvolenem okne nejsou spolecna data ({q}).")
+    settle_end = R.index.min() + pd.Timedelta(hours=a.ustaleni)
+    calm = R.diff(10).abs().max(axis=1) < cfg["calm_max_change"]
+    Qall = R[R.index >= settle_end]
+    if Qall.empty:
+        sys.exit(f"Po ustalovani nezbyla data ({q}); zkratte --ustaleni.")
+    Qcalm = Qall[calm.reindex(Qall.index)]
+    print(f"[{q}] okno {R.index.min()} az {R.index.max()}, ve sta

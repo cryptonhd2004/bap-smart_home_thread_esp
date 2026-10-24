@@ -24,7 +24,7 @@ network:
   enable_ipv6: true
 
 openthread:
-  device_type: FTD
+  device_type: FTD #router_role
   tlv: "0E080000000000010000000300000F4A0300001235060004001FFFE002080453941D7541003B0708FD978DB051298A07051077FABC98EE0421AFE411E3312B3D8AE0030E68612D7468726561642D32386435010228D50410396CF4DED6E2987D22B4919D049186540C0402A0F7F8"
 
 i2c:
@@ -35,12 +35,49 @@ i2c:
 sensor:
   - platform: bmp085
     temperature:
-      name: "Teplota"
+      name: "Teplota BMP180"
       id: bmp_temp
     pressure:
-      name: "Tlak"
+      name: "Tlak BMP180"
       id: bmp_press
     update_interval: 30s
+
+  - platform: dht
+    model: DHT11
+    pin: GPIO2
+    temperature:
+      name: "Teplota DHT11"
+      id: dht_temp
+      accuracy_decimals: 0
+    humidity:
+      name: "Vlhkost DHT11"
+      id: dht_hum
+    update_interval: 60s
+
+  - platform: sht4x
+    address: 0x44
+    precision: High
+    temperature:
+      name: "Teplota SHT40"
+      id: sht_temp
+    humidity:
+      name: "Vlhkost SHT40"
+      id: sht_hum
+    update_interval: 60s
+
+# Souhrn vsech senzoru v logu kazdou minutu
+interval:
+  - interval: 60s
+    then:
+      - logger.log:
+          format: "SOUHRN EP1 BMP180 teplota: %.2f C | EP2 BMP180 tlak: %.1f hPa"
+          args: ['id(bmp_temp).state', 'id(bmp_press).state']
+      - logger.log:
+          format: "SOUHRN EP5 DHT11 teplota: %.1f C | EP8 DHT11 vlhkost: %.1f %%RH"
+          args: ['id(dht_temp).state', 'id(dht_hum).state']
+      - logger.log:
+          format: "SOUHRN EP6 SHT40 teplota: %.2f C | EP7 SHT40 vlhkost: %.1f %%RH"
+          args: ['id(sht_temp).state', 'id(sht_hum).state']
 
 output:
   - platform: gpio
@@ -85,3 +122,15 @@ matter:
     4:
       extended_color_light:
         light_id: rgb_strip
+    5:
+      temperature_sensor:
+        temperature: dht_temp
+    6:
+      temperature_sensor:
+        temperature: sht_temp
+    7:
+      humidity_sensor:
+        relative_humidity: sht_hum
+    8:
+      humidity_sensor:
+        relative_humidity: dht_hum
