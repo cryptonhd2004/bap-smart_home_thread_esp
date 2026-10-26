@@ -1,0 +1,15 @@
+\begin{table}[ht]
+\centering
+\caption{Porovnání čidel (teplota), rozdíl prvního a druhého čidla (celé okno)}
+\label{tab:porovnani-teplota}
+\begin{tabular}{lrrrrrrr}
+\hline
+Dvojice & $n$ & $\bar{d}$ [\si{\celsius}] & $s_d$ [\si{\celsius}] & LoA [\si{\celsius}] & RMSE [\si{\celsius}] & $|d|\le 0{,}7$ [\%] & směrnice \\
+\hline
+ALPSTUGA (SEN63C) − SHT40 & 1979 & 0,43 & 0,08 & 0,27 až 0,58 & 0,43 & 99,9 & 1,17 \\
+BMP180 − SHT40 & 1979 & -0,75 & 0,03 & -0,80 až -0,71 & 0,76 & 0,5 & 1,04 \\
+DHT11 − SHT40 & 1979 & 0,00 & 0,04 & -0,09 až 0,09 & 0,04 & 100,0 & 0,98 \\
+TIMMERFLOTTE − SHT40 & 1979 & -0,42 & 0,09 & -0,60 až -0,25 & 0,43 & 100,0 & 0,87 \\
+\hline
+\end{tabular}
+\end{table}

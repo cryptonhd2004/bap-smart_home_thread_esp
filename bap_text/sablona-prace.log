@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.10.21)  21 OCT 2026 02:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.10.21)  26 OCT 2026 10:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1063,7 +1063,12 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 
  [17] [18
 
-] (sablona-prace.lot)
+] (sablona-prace.lot
+Overfull \hbox (2.7613pt too wide) in paragraph at lines 5--5
+ [][] [][]\T1/lmr/m/n/12 Porovn�n� �i-del (tep-lota), roz-d�l �i-dla a re-fe-ren�-n�ho SHT40 (jen klidn� 
+ []
+
+)
 \tf@lot=\write6
 \openout6 = `sablona-prace.lot'.
 
@@ -1113,21 +1118,19 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 17.
+(Font)              <10.95> on input line 27.
 
-Overfull \hbox (56.46646pt too wide) in paragraph at lines 17--27
- [][] 
- []
+Underfull \vbox (badness 1648) has occurred while \output is active []
 
-) [31{C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
+ [31{C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]) [32]
 \openout2 = `text/zaver.aux'.
 
- (text/zaver.tex [32
+ (text/zaver.tex) [33
 
 
 
 
-]) [33]
+]
 \openout2 = `text/literatura.aux'.
 
  (text/literatura.tex [34
@@ -1136,64 +1139,63 @@ Overfull \hbox (56.46646pt too wide) in paragraph at lines 17--27
 
 
 ]
-Underfull \hbox (badness 1270) in paragraph at lines 13--16
-[]\T1/lmr/m/n/12 SEEED STU-DIO. \T1/lmr/m/it/12 Tiny Matter-Native Bo-ard for Smart Home -- XIAO
- []
-
-
-Underfull \hbox (badness 1102) in paragraph at lines 18--21
-[]\T1/lmr/m/n/12 ESPRESSIF SYS-TEMS. \T1/lmr/m/it/12 ESP32-C6 Se-ries Da-ta-sheet \T1/lmr/m/n/12 [on-line]. [cit. 2026-
- []
-
-
-Underfull \hbox (badness 4713) in paragraph at lines 18--21
-\T1/lmr/m/n/12 10-21]. Do-stupn� z: []$\T1/lmtt/m/n/12 https : / / documentation . espressif . com / esp32-[]c6 _
- []
-
-
-Underfull \hbox (badness 7486) in paragraph at lines 23--26
+Underfull \hbox (badness 7486) in paragraph at lines 8--11
 []\T1/lmr/m/n/12 SENSIRION. \T1/lmr/m/it/12 Sensi-rion In-side: IKEA AL-PSTUGA Smart Air Qua-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 23--26
-\T1/lmr/m/it/12 lity Sen-sor \T1/lmr/m/n/12 [on-line]. 2026 [cit. 2026-10-21]. Do-stupn� z: []$\T1/lmtt/m/n/12 https :
+Underfull \hbox (badness 10000) in paragraph at lines 8--11
+\T1/lmr/m/it/12 lity Sen-sor \T1/lmr/m/n/12 [on-line]. 2026 [cit. 2026-10-26]. Do-stupn� z: []$\T1/lmtt/m/n/12 https :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 23--26
+Underfull \hbox (badness 10000) in paragraph at lines 8--11
 \T1/lmtt/m/n/12 / / sensirion . com / company / news / press-[]releases-[]and-[]news / article /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--31
+Underfull \hbox (badness 10000) in paragraph at lines 13--16
 []\T1/lmr/m/n/12 IKEA. \T1/lmr/m/it/12 AL-PSTUGA air qua-lity sen-sor, smart \T1/lmr/m/n/12 [on-line].
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--31
-\T1/lmr/m/n/12 [cit. 2026-10-21]. Do-stupn� z: []$\T1/lmtt/m/n/12 https : / / www . ikea . com / cz / en / p /
+Underfull \hbox (badness 10000) in paragraph at lines 13--16
+\T1/lmr/m/n/12 [cit. 2026-10-26]. Do-stupn� z: []$\T1/lmtt/m/n/12 https : / / www . ikea . com / cz / en / p /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--41
+Underfull \hbox (badness 10000) in paragraph at lines 28--31
 []\T1/lmr/m/n/12 IKEA. \T1/lmr/m/it/12 TI-M-MER-FLOTTE tem-pe-ra-ture/humidity sen-sor, smart \T1/lmr/m/n/12 [on-
  []
 
 
-Underfull \hbox (badness 7273) in paragraph at lines 38--41
-\T1/lmr/m/n/12 line]. [cit. 2026-10-21]. Do-stupn� z: []$\T1/lmtt/m/n/12 https : / / www . ikea . com / cz / en / p /
+Underfull \hbox (badness 7273) in paragraph at lines 28--31
+\T1/lmr/m/n/12 line]. [cit. 2026-10-26]. Do-stupn� z: []$\T1/lmtt/m/n/12 https : / / www . ikea . com / cz / en / p /
  []
 
-) [35]
+
+Underfull \hbox (badness 1270) in paragraph at lines 52--55
+[]\T1/lmr/m/n/12 SEEED STU-DIO. \T1/lmr/m/it/12 Tiny Matter-Native Bo-ard for Smart Home -- XIAO
+ []
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 57--60
+[]\T1/lmr/m/n/12 ESPRESSIF SYS-TEMS. \T1/lmr/m/it/12 ESP32-C6 Se-ries Da-ta-sheet \T1/lmr/m/n/12 [on-line]. [cit. 2026-
+ []
+
+
+Underfull \hbox (badness 4713) in paragraph at lines 57--60
+\T1/lmr/m/n/12 10-26]. Do-stupn� z: []$\T1/lmtt/m/n/12 https : / / documentation . espressif . com / esp32-[]c6 _
+ []
+
+[35]) [36]
 \openout2 = `text/zkratky.aux'.
 
- (text/zkratky.tex [36
+ (text/zkratky.tex) [37
 
 
 
 
-]) [37
 
 ] [38
 
@@ -1215,7 +1217,7 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <20.74> not available
  [41] [42
 
 ]
-<obrazky/ZlepseneWilsonovoZrcadloNPN.png, id=433, 556.0775pt x 434.62375pt>
+<obrazky/ZlepseneWilsonovoZrcadloNPN.png, id=444, 556.0775pt x 434.62375pt>
 File: obrazky/ZlepseneWilsonovoZrcadloNPN.png Graphic file (type png)
 <use obrazky/ZlepseneWilsonovoZrcadloNPN.png>
 Package pdftex.def Info: obrazky/ZlepseneWilsonovoZrcadloNPN.png  used on input line 61.
@@ -1248,8 +1250,12 @@ File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
 ) (text/zkratky.tex)
 Package acronym Info: Label `acro:symfvz' newly defined as it shall be overridden
 although it is yet undefined on input line 101.
+
+
+Package acronym Warning: Acronym symfvz is not defined on input line 101.
+
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 104.
- (text/zkratky.tex) (text/zkratky.tex) [45] (C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+(text/zkratky.tex) (text/zkratky.tex) [45] (C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
@@ -1276,21 +1282,21 @@ LaTeX2e <2026-06-01>
 L3 programming layer <2026-09-09>
  ***********
 Package rerunfilecheck Info: File `sablona-prace.out' has not changed.
-(rerunfilecheck)             Checksum: F0AE6A4FFD22D27AD1815443CE6572B9;3418.
+(rerunfilecheck)             Checksum: E6FC0674050B0CB26FFB22D2DB65705B;3418.
  )
 (\end occurred when \ifx on line 28 was incomplete) 
 Here is how much of TeX's memory you used:
- 20570 strings out of 467392
- 331974 string characters out of 5404666
- 996158 words of memory out of 5000000
- 49242 multiletter control sequences out of 15000+600000
- 813917 words of font info for 128 fonts, out of 8000000 for 9000
+ 20539 strings out of 467392
+ 331647 string characters out of 5404666
+ 996419 words of memory out of 5000000
+ 49213 multiletter control sequences out of 15000+600000
+ 813552 words of font info for 127 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  74i,17n,90p,1053b,2397s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/cbgreek/grmn1200.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx6.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsso12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtti10.pfb>
-Output written on sablona-prace.pdf (51 pages, 772621 bytes).
+<C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/cbgreek/grmn1200.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx6.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsso12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtti10.pfb>
+Output written on sablona-prace.pdf (51 pages, 790859 bytes).
 PDF statistics:
- 683 PDF objects out of 1000 (max. 8388607)
- 173 named destinations out of 1000 (max. 500000)
+ 694 PDF objects out of 1000 (max. 8388607)
+ 172 named destinations out of 1000 (max. 500000)
  228 words of extra memory for PDF output out of 10000 (max. 10000000)
 

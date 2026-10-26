@@ -5,25 +5,68 @@
 Pro všechny tři prvky chytré domácnosti byl zvolen vývojový modul Xiao ESP32-C6 od společnosti Seeed Studio~\cite{seeed-xiao-wiki}. Jeho jádrem je čip ESP32-C6, který nabízí rádio IEEE~802.11ax pro Wi-Fi~6, IEEE~802.15.1 pro Bluetooth~5.3 a IEEE~802.15.4 pro Thread, a podporuje tak protokol Matter~\cite{espressif-esp32c6-ds}. Modul disponuje 4~MB flash paměti a 400~kB SRAM. Napájet jej lze přes konektor USB-C nebo přes pájecí plošky určené pro připojení baterie, přičemž nabíjení Li-ion/Li-Po článků zajišťuje přímo integrovaný nabíjecí obvod. Pro externí anténu je k dispozici konektor MHF4~\cite{seeed-xiao-wiki,seeed-xiao-product}.
 \subsection{Čidlo teploty}
 \subsubsection{Výběr teplotního čidla}
-%Bylo porovnáno několik teplotních čidel, které jsou běžně dostupné na trhu. Porovnání bylo provedeno s ohledem na přesnost měření, odezvu a cenu. Jako referenční čidlo bylo použito SEN63C, která je součástí komerčně dostupného chytrého senzoru IKEA ALPSTUGA.\\
-%Senzory které byly porovnány jsou: DHT11, BMP180 a IKEA TIMMERFLOTTE.\\
-Bylo porovnáno několik běžně dostupných teplotních čidel z hlediska přesnosti měření, rychlosti odezvy a ceny. Jako referenční bylo použito čidlo SEN63C, které je součástí komerčního chytrého senzoru IKEA ALPSTUGA~\cite{sensirion-alpstuga,ikea-alpstuga,sensirion-sen6x}. Srovnávána byla čidla DHT11~\cite{aosong-dht11}, BMP180~\cite{bosch-bmp180} a IKEA TIMMERFLOTTE~\cite{ikea-timmerflotte}.
+%Bylo porovnáno několik běžně dostupných teplotních čidel z hlediska přesnosti měření, rychlosti odezvy a ceny. Jako referenční bylo použito čidlo SEN63C, které je součástí komerčního chytrého senzoru IKEA ALPSTUGA~\cite{sensirion-alpstuga,ikea-alpstuga,sensirion-sen6x}. Srovnávána byla čidla DHT11~\cite{aosong-dht11}, BMP180~\cite{bosch-bmp180} a IKEA TIMMERFLOTTE~\cite{ikea-timmerflotte}.
+Bylo porovnáno několik běžně dostupných čidel teploty a relativní vlhkosti z hlediska systematické odchylky, rozptylu a lineárnosti odezvy. Jako referenční bylo použito čidlo SHT40~\cite{sensirion-sht4x}, vůči kterému byla vyhodnocena čidla SEN63C, které je součástí komerčního chytrého senzoru IKEA ALPSTUGA~\cite{sensirion-sen6x,sensirion-alpstuga,ikea-alpstuga}, dále DHT11~\cite{aosong-dht11}, BMP180~\cite{bosch-bmp180} a IKEA TIMMERFLOTTE~\cite{ikea-timmerflotte}. Čidlo BMP180 bylo hodnoceno pouze z hlediska teploty.
 \begin{table}[ht]
 \centering
-\caption{Porovnání teplotních čidel (rozdíl prvního a druhého čidla)}
-\label{tab:porovnani-cidel}
 \small
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}l r r r r r r@{}}
+\caption{Porovnání čidel (teplota), rozdíl čidla a referenčního SHT40 (jen klidné minuty)}
+\label{tab:porovnani-teplota_klid}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrr}
 \hline
-Dvojice & $n$ & $\bar{d}$ & $s_d$ & LoA & RMSE & $|d|\le 0{,}7$ \\
- & [--] & [\textdegree C] & [\textdegree C] & [\textdegree C] & [\textdegree C] & [\%] \\
+Čidlo & $n$ & $\bar{d}$ [$^\circ$C] & $s_d$ [$^\circ$C] & LoA [$^\circ$C] & RMSE [$^\circ$C] & $|d|\le 0{,}7$ [\%] & směrnice \\
 \hline
-BMP180 -- ALPSTUGA (SEN63C)       & 1525 & $-0{,}53$ & $0{,}16$ & $-0{,}86$ až $-0{,}21$ & $0{,}56$ & $93{,}7$ \\
-DHT11 -- ALPSTUGA (SEN63C)        & 1525 & $0{,}11$  & $0{,}17$ & $-0{,}23$ až $0{,}45$  & $0{,}21$ & $99{,}1$ \\
-TIMMERFLOTTE -- ALPSTUGA (SEN63C) & 1525 & $0{,}33$  & $0{,}71$ & $-1{,}06$ až $1{,}72$  & $0{,}78$ & $68{,}7$ \\
+ALPSTUGA (SEN63C) & 1916 & $0{,}43$ & $0{,}07$ & $0{,}29$ až $0{,}57$ & $0{,}44$ & $100{,}0$ & $1{,}16$ \\
+BMP180 & 1916 & $-0{,}75$ & $0{,}02$ & $-0{,}80$ až $-0{,}71$ & $0{,}75$ & $0{,}5$ & $1{,}04$ \\
+DHT11 & 1916 & $0{,}00$ & $0{,}04$ & $-0{,}09$ až $0{,}08$ & $0{,}04$ & $100{,}0$ & $0{,}98$ \\
+TIMMERFLOTTE & 1916 & $-0{,}43$ & $0{,}08$ & $-0{,}58$ až $-0{,}28$ & $0{,}44$ & $100{,}0$ & $0{,}87$ \\
 \hline
-\end{tabular}
+\end{tabular}%
+}
+\vspace{2mm}
+
+\begin{minipage}{0.95\textwidth}
+\footnotesize
+\raggedright
+\textbf{Vysvětlivky:} Rozdíl $d_i$ je hodnota čidla minus hodnota referenčního
+čidla SHT40. $n$ -- počet párových měření; $\bar{d}$ -- střední hodnota
+rozdílů; $s_d$ -- směrodatná odchylka rozdílů; LoA -- meze shody
+$\bar{d} \pm 1{,}96\,s_d$~\cite{bland-altman-1986}; RMSE -- střední
+kvadratická chyba; $|d|\le 0{,}7$ -- podíl měření, u nichž absolutní hodnota
+rozdílu nepřekročila 0,7~$^\circ$C; směrnice -- sklon regresní přímky
+(hodnota čidla jako funkce hodnoty SHT40).
+\end{minipage}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Porovnání čidel (vlhkost), rozdíl čidla a referenčního SHT40 (jen klidné minuty)}
+\label{tab:porovnani-vlhkost_klid}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrr}
+\hline
+Čidlo & $n$ & $\bar{d}$ [\%\,RH] & $s_d$ [\%\,RH] & LoA [\%\,RH] & RMSE [\%\,RH] & $|d|\le 3{,}0$ [\%] & směrnice \\
+\hline
+ALPSTUGA (SEN63C) & 1690 & $-7{,}53$ & $0{,}45$ & $-8{,}42$ až $-6{,}65$ & $7{,}55$ & $0{,}0$ & $1{,}04$ \\
+DHT11 & 1690 & $-0{,}22$ & $0{,}55$ & $-1{,}31$ až $0{,}87$ & $0{,}60$ & $100{,}0$ & $1{,}15$ \\
+TIMMERFLOTTE & 1690 & $-4{,}88$ & $0{,}25$ & $-5{,}36$ až $-4{,}40$ & $4{,}88$ & $0{,}0$ & $0{,}94$ \\
+\hline
+\end{tabular}%
+}
+\vspace{2mm}
+
+\begin{minipage}{0.95\textwidth}
+\footnotesize
+\raggedright
+\textbf{Vysvětlivky:} Význam veličin $n$, $\bar{d}$, $s_d$, LoA, RMSE a směrnice
+je uveden pod tabulkou~\ref{tab:porovnani-teplota_klid}. Rozdíl $d_i$ je
+hodnota čidla minus hodnota referenčního čidla SHT40. $|d|\le 3{,}0$ -- podíl
+měření, u nichž absolutní hodnota rozdílu nepřekročila 3,0~\%\,RH.
+\end{minipage}
 \end{table}
 \subsection{Chytré světlo}
 Pro návrh chytrého světla bylo použito adresovatelné LED světlo WS2812B, které je běžně dostupné na trhu. Toto světlo umožňuje ovládání jednotlivých LED diod. 

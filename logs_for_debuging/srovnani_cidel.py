@@ -18,6 +18,14 @@ Volby:
   --vsechny-dvojice  porovnat vsechny dvojice, ne jen cidla proti reference
   --vystup SLOZKA    vystupni slozka (vychozi 'output' vedle skriptu)
 
+Poznamky:
+  * Vnitrne se pocita v UTC (kvuli prechodu na zimni cas); grafy a --od/--do
+    jsou v mistnim case.
+  * Stavy 'unknown'/'unavailable' se berou jako vypadek: dane minuty se
+    z porovnani vyradi (nepredlzuje se posledni hodnota).
+  * Konec okna je posledni zaznam kterehokoli cidla teto veliciny; cidlo,
+    ktere HA ukládá jen pri zmene, se do konce prodlouzi poslední hodnotou.
+
 Pridani cidla = jeden radek v seznamu 'sensors' dane veliciny.
 Zavislosti: pip install pandas numpy matplotlib
 """
@@ -34,6 +42,7 @@ import matplotlib.pyplot as plt
 
 HERE = Path(__file__).resolve().parent
 TZ = "Europe/Prague"
+plt.rcParams["timezone"] = TZ   # nazorne datumy (UTC) se zobrazi v mistnim case
 
 QUANTITIES = {
     "teplota": {
@@ -62,36 +71,39 @@ QUANTITIES = {
 
 def read_csv(path):
     df = pd.read_csv(path)
-    # naivni mistni cas (bez tz) - obchazi problemy pandas na Windows
-    t = (pd.to_datetime(df["last_changed"], utc=True)
-         .dt.tz_convert(TZ).dt.tz_localize(None))
-    v = pd.to_numeric(df["state"], errors="coerce")
+    t = pd.to_datetime(df["last_changed"], utc=True).dt.tz_localize(None)  # UTC
+    v = pd.to_numeric(df["state"], errors="coerce")   # unknown/unavailable -> NaN
     return t, v, df["entity_id"].astype(str).str.lower()
 
 
 def load(t, v, ent, sensors):
     out = {}
     for code, key, _ in sensors:
-        m = (ent.str.contains(key.lower()) & v.notna()).to_numpy()
+        m = ent.str.contains(key.lower()).to_numpy()
         if not m.any():
             sys.exit(f"V CSV nenalezena entita obsahujici '{key}' "
                      f"(upravte QUANTITIES).")
         s = pd.Series(v.to_numpy()[m], index=pd.DatetimeIndex(t.to_numpy()[m]))
-        out[code] = s[~s.index.duplicated()]
+        s = s[~s.index.duplicated(keep="last")].sort_index()
+        out[code] = s
     return out
 
 
+def local_ts(text):
+    return (pd.Timestamp(text).tz_localize(TZ, ambiguous=True)
+            .tz_convert("UTC").tz_localize(None))
+
+
 def align(series, start, end, freq="1min"):
-    # HA uklada jen zmeny -> mezi zmenami plati posledni zname hodnota (ffill)
+    # zaznam je jen pri zmene -> mezi zmenami plati posledni stav (vcetne NaN)
     lo = max(s.index.min() for s in series.values())
-    hi = min(s.index.max() for s in series.values())
+    hi = max(s.index.max() for s in series.values())
     if start is not None:
         lo = max(lo, start)
     if end is not None:
         hi = min(hi, end)
     idx = pd.date_range(lo.ceil(freq), hi, freq=freq)
-    cols = {k: s.reindex(s.index.union(idx)).ffill().reindex(idx)
-            for k, s in series.items()}
+    cols = {k: s.reindex(idx, method="ffill") for k, s in series.items()}
     return pd.DataFrame(cols).dropna()
 
 
@@ -148,13 +160,14 @@ def plot_timeseries(R, settle_end, q, cfg, names, pairs, out):
 
 
 def plot_diurnal(Q, q, cfg, names, pairs, out):
+    hours = Q.index.tz_localize("UTC").tz_convert(TZ).hour
     fig, ax = plt.subplots(figsize=(8, 4))
     for x, y in pairs:
-        med = (Q[x] - Q[y]).groupby(Q.index.hour).median()
+        med = (Q[x] - Q[y]).groupby(hours).median()
         ax.plot(med.index, med.values, marker="o",
                 label=f"{names[x]} − {names[y]}")
     ax.axhline(0, color="k", lw=.5)
-    ax.set_xlabel("Hodina dne")
+    ax.set_xlabel("Hodina dne (místní čas)")
     ax.set_ylabel(f"Medián rozdílu [{cfg['unit']}]")
     ax.set_title(f"Denní chod rozdílu: {q}")
     ax.legend(fontsize=8)
@@ -251,15 +264,76 @@ def process(q, cfg, t, v, ent, a, out):
     if a.ref not in codes:
         sys.exit(f"Referencni cidlo '{a.ref}' neni v seznamu: {codes}")
     pairs = make_pairs(codes, a.ref, a.vsechny_dvojice)
-    start = pd.Timestamp(a.od) if a.od else None
-    end = pd.Timestamp(a.do) if a.do else None
+    start = local_ts(a.od) if a.od else None
+    end = local_ts(a.do) if a.do else None
     R = align(load(t, v, ent, cfg["sensors"]), start, end)
     if R.empty:
         sys.exit(f"Ve zvolenem okne nejsou spolecna data ({q}).")
     settle_end = R.index.min() + pd.Timedelta(hours=a.ustaleni)
+    # "klid": zmena za 10 radku (~10 min); mezery po vypadku se do toho nepocitaji
     calm = R.diff(10).abs().max(axis=1) < cfg["calm_max_change"]
     Qall = R[R.index >= settle_end]
     if Qall.empty:
         sys.exit(f"Po ustalovani nezbyla data ({q}); zkratte --ustaleni.")
     Qcalm = Qall[calm.reindex(Qall.index)]
-    print(f"[{q}] okno {R.index.min()} az {R.index.max()}, ve sta
+    loc = lambda ts: ts.tz_localize("UTC").tz_convert(TZ).strftime("%d.%m. %H:%M")
+    print(f"[{q}] okno {loc(R.index.min())} az {loc(R.index.max())} (mistni), "
+          f"ve statistikach {len(Qall)} min (klidnych {len(Qcalm)})")
+
+    plot_timeseries(R, settle_end, q, cfg, names, pairs, out)
+    if (Qall.index.max() - Qall.index.min()) >= pd.Timedelta(hours=24):
+        plot_diurnal(Qall, q, cfg, names, pairs, out)
+
+    for suffix, Q, extra in (("", Qall, " (celé okno)"),
+                             ("_klid", Qcalm, " (jen klidné minuty)")):
+        if len(Q) < 10:
+            print(f"[{q}] {suffix or 'vse'}: malo dat, preskakuji.")
+            continue
+        plot_box(Q, q, cfg, names, pairs, suffix, out)
+        plot_regression(Q, q, cfg, names, pairs, suffix, out)
+        plot_bland_altman(Q, q, cfg, names, pairs, suffix, out)
+        rows = [(f"{names[x]} − {names[y]}", stats_row(Q[x], Q[y], cfg["tol"]))
+                for x, y in pairs]
+        pd.DataFrame({n: r for n, r in rows}).T.round(3).to_csv(
+            out / f"souhrn_{q}{suffix}.csv")
+        (out / f"tabulka_{q}{suffix}.tex").write_text(
+            latex_table(rows, q, cfg, suffix, extra), encoding="utf-8")
+        print(f"--- {q}{suffix or ' (vse)'} ---")
+        for n_, r in rows:
+            print(f"  {n_}: prumer {r['mean']:+.2f} {cfg['unit']}, "
+                  f"std {r['std']:.2f}, RMSE {r['rmse']:.2f}, "
+                  f"smernice {r['slope']:.2f}")
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawTextHelpFormatter)
+    ap.add_argument("csv", nargs="?", default=str(HERE / "final_comparison.csv"))
+    ap.add_argument("--od")
+    ap.add_argument("--do")
+    ap.add_argument("--ustaleni", type=float, default=0.0)
+    ap.add_argument("--ref", default="S")
+    ap.add_argument("--vsechny-dvojice", action="store_true")
+    ap.add_argument("--vystup", default=str(HERE / "output"))
+    a = ap.parse_args()
+    if not Path(a.csv).exists():
+        sys.exit(f"CSV nenalezeno: {a.csv}")
+    out = Path(a.vystup)
+    out.mkdir(parents=True, exist_ok=True)
+    t, v, ent = read_csv(a.csv)
+    for q, cfg in QUANTITIES.items():
+        process(q, cfg, t, v, ent, a, out)
+    print("Hotovo, vystup je v:", out)
+
+
+if __name__ == "__main__":
+    try:
+        if hasattr(sys.stdout, "reconfigure"):
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        main()
+    except SystemExit:
+        raise
+    except Exception:
+        (HERE / "chyba.log").write_text(traceback.format_exc(), encoding="utf-8")
+        print(traceback.format_exc())
+        raise

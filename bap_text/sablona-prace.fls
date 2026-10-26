@@ -421,7 +421,7 @@ INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr1
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmmi10.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmsy10.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cbgreek\grmn1095.tfm
-INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmr10.tfm
+INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx10.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
 INPUT .\text\zaver.tex
@@ -442,7 +442,6 @@ OUTPUT text\zkratky.aux
 INPUT .\text\zkratky.tex
 INPUT .\text\zkratky.tex
 INPUT text\zkratky.tex
-INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr6.tfm
 INPUT .\sablona-prace.toa
 INPUT .\sablona-prace.toa
 INPUT sablona-prace.toa
@@ -455,6 +454,7 @@ INPUT .\text\prilohy.tex
 INPUT text\prilohy.tex
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmtk10.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmtt10.tfm
+INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr6.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri10.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri8.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri7.tfm
@@ -473,7 +473,6 @@ INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbxi10.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbxi10.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbxi10.tfm
-INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx10.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx7.tfm
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx5.tfm
 INPUT .\obrazky\ZlepseneWilsonovoZrcadloNPN.png
@@ -568,6 +567,8 @@ INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi1
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi10.pfb
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi12.pfb
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi12.pfb
+INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi7.pfb
+INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi7.pfb
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi8.pfb
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi8.pfb
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
@@ -590,6 +591,8 @@ INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsso
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsso12.pfb
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy10.pfb
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy10.pfb
+INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy7.pfb
+INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy7.pfb
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy8.pfb
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy8.pfb
 INPUT C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmtk10.pfb

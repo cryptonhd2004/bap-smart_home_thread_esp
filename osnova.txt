@@ -1,0 +1,31 @@
+Úvod
+1 Teoretický úvod do chytrých domácností
+	1.1 IEEE 802.15.4
+	1.2 Thread
+	1.3 Matter
+		1.3.1 Connectivity Standards Alliance (CSA) ???
+		1.3.2 Matter over Wifi
+		1.3.3 Matter over Thread
+	1.4 ESPhome/ESP-Matter/ESP-IDF
+	1.5 Ekosystémy
+		1.5.1 Home Assistant
+		1.5.2 Google Home
+		1.5.3 Apple Home
+		1.5.4 Samsung SmartThings
+	1.6 OpenThreadBoarder Router
+(problematika integrací??, separátní aplikace pro každý prvek chytré domáctnosti?, )
+
+
+2 Výsledky studenstké práce
+	2.1 Návrh jednotlivých prvků
+		2.1.1 Mikrokontroler
+		2.1.2 Čidlo teploty
+		2.1.3 Chytré světlo
+		2.1.4 Bateriový vypínač
+	2.2 FW
+	2.3 Integrace do HAss?
+
+
+Ivo nebo Ivu Lattenbergovi do poděkování???
+Klíčová slova??
+
