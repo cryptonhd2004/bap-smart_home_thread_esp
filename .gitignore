@@ -1,0 +1,63 @@
+# ===== LaTeX: pomocné soubory =====
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.lol
+*.loa
+*.toa
+*.nav
+*.snm
+*.vrb
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# ===== LaTeX: vygenerovaná PDF =====
+# Odkomentujte, pokud nechcete PDF v repozitáři
+# bap_text/sablona-prace.pdf
+# bap_text/sablona-obhaj.pdf
+
+# ===== KiCad =====
+*-backups/
+*-bak
+*.bak
+*.lck
+_autosave-*
+fp-info-cache
+*.kicad_prl
+~*.lck
+*-cache.lib
+*.kicad_pcb-bak
+*.kicad_sch-bak
+fp-lib-table.bak
+sym-lib-table.bak
+
+# ===== Zálohy a archivy =====
+backup.zip
+*.zip
+
+# ===== ESP-IDF / PlatformIO / ESPHome =====
+build/
+sdkconfig.old
+managed_components/
+dependencies.lock
+.esphome/
+.pio/
+__pycache__/
+secrets.yaml
+
+# ===== Editory a OS =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*~
+desktop.ini

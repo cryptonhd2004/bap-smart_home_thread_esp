@@ -3,4 +3,15 @@
 \addcontentsline{toc}{chapter}{Úvod}
 
 
-Tato bakalářská práce se věnuje návrhu a realizaci tří prvků chytré domácnosti, které komunikují protokolem Matter přenášeným přes síť Thread. Jde o čidlo teploty, chytré světlo a bateriový vypínač. Všechna zařízení jsou postavená na čipech Espressif ESP32-C6, s podporou rádia IEEE 802.15.4.
+Chytrá domácnost je dnes tvořena zařízeními od různých výrobců, která se bez
+společného standardu těžko propojují. Tento problém řeší protokol
+Matter~\cite{csa-matter}, který definuje jednotný aplikační model zařízení
+nad IP vrstvou. Přenos dat po rádiovém rozhraní IEEE~802.15.4 zajišťuje
+nízkopříkonová síť Thread, postavená na IPv6~\cite{thread-group}.
+
+Tato bakalářská práce se věnuje návrhu a realizaci tří prvků chytré domácnosti,
+které komunikují protokolem Matter přenášeným přes síť Thread. Jde o čidlo
+teploty, chytré světlo a bateriový vypínač. Všechna zařízení jsou postavena
+na čipech Espressif ESP32-C6, které disponují rádiem IEEE~802.15.4 a podporou
+protokolu Matter~\cite{espressif-esp32c6-ds}. Pro vývoj byl zvolen modul
+Seeed Studio XIAO ESP32-C6~\cite{seeed-xiao-wiki}.

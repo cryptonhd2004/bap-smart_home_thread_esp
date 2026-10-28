@@ -1,5 +1,75 @@
 \chapter{Teoretická část studentské práce}
+Tato kapitola shrnuje technologie, na kterých je navržená chytrá domácnost
+postavena. Nejprve je popsán standard IEEE~802.15.4, který definuje fyzickou
+vrstvu a vrstvu řízení přístupu k médiu pro nízkopříkonové bezdrátové sítě.
+Na něm staví síť Thread, které je věnována další sekce. Následuje popis
+aplikačního protokolu Matter, a to včetně organizace Connectivity Standards
+Alliance a variant přenosu přes Wi-Fi a Thread. Dále je představen nástroj
+ESPHome a nejrozšířenější ekosystémy chytré domácnosti, tedy Home Assistant,
+Google Home, Apple Home a Samsung SmartThings. Kapitola je zakončena popisem
+role OpenThread Border Router, který propojuje síť Thread s ostatními
+sítěmi.
 
-Teoretické zázemí studentské práce vhodně rozdělené do částí.
+\section{IEEE 802.15.4}
+Standard IEEE 802.15.4 definuje fyzickou vrstvu (PHY) a vrstvu řízení přístupu k médiu (MAC) pro bezdrátové osobní sítě s nízkou přenosovou rychlostí a velmi nízkou spotřebou~\cite{ieee-802154}. Neurčuje však vyšší vrstvy sítě. Stává se tak základem pro protokoly, které na něm staví, například ZigBee, WirelessHART nebo 6LoWPAN~\cite{mathworks-802154}. Protokol Thread využívá právě fyzickou a MAC vrstvu tohoto standardu~\cite{espressif-openthread}. V pásmu 2,4~GHz, které je používáno ve světě nejčastěji, standard definuje 16~kanálů s odstupem 5~MHz a přenosovou rychlost 250~kb/s~\cite{jain-802154}. Maximální velikost rámce MAC je 127~bajtů~\cite{jain-802154}. Zařízení mohou používat dlouhou 64bitovou adresu nebo krátkou 16bitovou adresu~\cite{nsnam-lrwpan}. Přístup ke sdílenému kanálu řídí mechanismus CSMA/CA, ve kterém zařízení před vysíláním nejprve vyhodnotí, zda je kanál volný, a při obsazeném kanálu vyčká náhodnou dobu~\cite{nxp-an1035}. Standard rozlišuje plnohodnotná zařízení (FFD), která mohou pracovat jako koordinátor, a zařízení s omezenou funkcí (RFD)~\cite{jain-802154}. Toto rozdělení se promítá i do rolí v síti Thread. Čip ESP32-C6 obsahuje vestavěné rádio IEEE~802.15.4, takže může fungovat jako uzel sítě Thread~\cite{espressif-openthread}. 
 
-(Struktura navržená v~této šabloně je nejhrubší možná, po konzultaci s~vedoucím je vhodné zvolit přiléhavější.)
+
+
+\section{Thread}
+
+
+
+\section{Matter}
+
+
+
+\subsection{Connectivity Standards Alliance}
+Connectivity Standards Alliance (CSA) je mezinárodní sdružení technologických
+společností, které vytváří a udržuje otevřené standardy pro internet věcí.
+Do roku 2021 neslo název Zigbee Alliance a jeho vznik je datován do
+roku~2002~\cite{csa-matter-arrives}. K přejmenování na CSA došlo
+11.~května 2021, kdy bylo zároveň oznámeno nové označení Matter pro
+projekt Connected Home over IP (CHIP). Sdružení si ponechalo značku
+Zigbee a nadále ji rozvíjí~\cite{csa-rebrand}.
+
+Specifikace Matter 1.0 byla vydána 4.~října 2022 spolu s otevřením
+certifikačního programu. V době vydání sdružovala CSA více než
+550~společností, z nichž přes 280 se podílelo na vzniku
+specifikace~\cite{csa-matter-arrives}. Součástí certifikace jsou testovací
+nástroje a akreditované testovací laboratoře, které ověřují nejen samotný
+Matter, ale i podkladové sítě Wi-Fi a Thread~\cite{csa-matter-arrives}.
+
+Výrobce, který chce produkt s podporou Matter certifikovat, musí být členem
+CSA a získat od ní identifikátor výrobce (Vendor ID), jenž se vyskytuje ve
+firmwaru zařízení a v atestačních certifikátech~\cite{matter-handbook}.
+
+
+\subsection{Matter over Wi-Fi}
+
+
+
+\subsection{Matter over Thread}
+
+
+
+\section{ESPHome}
+
+
+\section{Ekosystémy}
+
+
+\subsection{Home Assistant}
+
+
+\subsection{Google Home}
+
+
+\subsection{Apple Home}
+
+
+\subsection{Samsung SmartThings}
+
+
+\section{Open Thread Border Router}
+
+

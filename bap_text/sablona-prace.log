@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.10.21)  26 OCT 2026 10:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.10.21)  29 OCT 2026 00:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -920,7 +920,7 @@ Package babel Info: Main language set to 'czech'.
 
 
 pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<pdf/student-titulka.pdf, id=88, 597.55246pt x 845.07724pt>
+<pdf/student-titulka.pdf, id=156, 597.55246pt x 845.07724pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
 Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 142.
@@ -931,7 +931,7 @@ pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found 
 
 
 pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<pdf/student-titulka.pdf, id=90, page=1, 597.55246pt x 845.07724pt>
+<pdf/student-titulka.pdf, id=158, page=1, 597.55246pt x 845.07724pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
 Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 142.
@@ -958,12 +958,12 @@ Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 142.
  <./pdf/student-titulka.pdf>] [2
 
 ]
-<pdf/student-zadani.pdf, id=117, 597.45204pt x 845.1575pt>
+<pdf/student-zadani.pdf, id=185, 597.45204pt x 845.1575pt>
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf>
 Package pdftex.def Info: pdf/student-zadani.pdf  used on input line 150.
 (pdftex.def)             Requested size: 597.45058pt x 845.15544pt.
-<pdf/student-zadani.pdf, id=119, page=1, 597.45204pt x 845.1575pt>
+<pdf/student-zadani.pdf, id=187, page=1, 597.45204pt x 845.1575pt>
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf, page 1>
 Package pdftex.def Info: pdf/student-zadani.pdf , page1 used on input line 150.
@@ -1048,20 +1048,20 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 ] (sablona-prace.toc
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 19.
-)
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 36.
+ [15
+
+])
 \tf@toc=\write4
 \openout4 = `sablona-prace.toc'.
 
- [15
-
-] [16
-
-] (sablona-prace.lof)
+ [16] (sablona-prace.lof)
 \tf@lof=\write5
 \openout5 = `sablona-prace.lof'.
 
- [17] [18
+ [17
+
+] [18
 
 ] (sablona-prace.lot
 Overfull \hbox (2.7613pt too wide) in paragraph at lines 5--5
@@ -1108,21 +1108,21 @@ Overfull \hbox (2.7613pt too wide) in paragraph at lines 5--5
 
 
 
-]) [29]
+] [29]) [30]
 \openout2 = `text/vysledky.aux'.
 
- (text/vysledky.tex [30
-
-
-
-
-]
+ (text/vysledky.tex
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 27.
 
 Underfull \vbox (badness 1648) has occurred while \output is active []
 
- [31{C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]) [32]
+ [31
+
+
+
+
+{C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]) [32]
 \openout2 = `text/zaver.aux'.
 
  (text/zaver.tex) [33
@@ -1188,16 +1188,62 @@ Underfull \hbox (badness 4713) in paragraph at lines 57--60
 \T1/lmr/m/n/12 10-26]. Do-stupn� z: []$\T1/lmtt/m/n/12 https : / / documentation . espressif . com / esp32-[]c6 _
  []
 
-[35]) [36]
+[35]
+Underfull \hbox (badness 4144) in paragraph at lines 77--80
+[]\T1/lmr/m/n/12 MATHWORKS. \T1/lmr/m/it/12 Re-co-very of IEEE 802.15.4 OQPSK Sig-nals \T1/lmr/m/n/12 [on-line].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--85
+\T1/lmtt/m/n/12 projects / esp-[]idf / en / stable / esp32c6 / api-[]reference / network / esp _
+ []
+
+
+Underfull \hbox (badness 2990) in paragraph at lines 107--110
+[]\T1/lmr/m/n/12 CONNECTIVITY STAN-DARDS AL-LI-ANCE. \T1/lmr/m/it/12 The Zi-gbee Al-li-ance Re-
+ []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 107--110
+\T1/lmr/m/it/12 brands as Con-necti-vity Stan-dards Al-li-ance \T1/lmr/m/n/12 [on-line]. Busi-ness Wire, 2021
+ []
+
+
+Underfull \hbox (badness 1590) in paragraph at lines 107--110
+\T1/lmr/m/n/12 [cit. 2026-10-29]. Do-stupn� z: []$\T1/lmtt/m/n/12 https : / / www . nasdaq . com / press-[]release /
+ []
+
+
+Overfull \hbox (59.31175pt too wide) in paragraph at lines 107--110
+\T1/lmtt/m/n/12 the-[]zigbee-[]alliance-[]rebrands-[]as-[]connectivity-[]standards-[]alliance-[]2021-[]05-[]13$[] 
+ []
+
+[36]
+Underfull \hbox (badness 10000) in paragraph at lines 112--115
+[]\T1/lmr/m/n/12 CONNECTIVITY STAN-DARDS AL-LI-ANCE. \T1/lmr/m/it/12 Mem-ber-ship. In: Mat-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--115
+\T1/lmr/m/it/12 ter Han-d-book \T1/lmr/m/n/12 [on-line]. [cit. 2026-10-29]. Do-stupn� z: []$\T1/lmtt/m/n/12 https : / /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--115
+\T1/lmtt/m/n/12 handbook . buildwithmatter . com / certification / certifying-[]a-[]product /
+ []
+
+) [37]
 \openout2 = `text/zkratky.aux'.
 
- (text/zkratky.tex) [37
+ (text/zkratky.tex [38
 
 
 
 
+]) [39
 
-] [38
+] [40
 
 
 
@@ -1205,24 +1251,24 @@ Underfull \hbox (badness 4713) in paragraph at lines 57--60
 \tf@toa=\write9
 \openout9 = `sablona-prace.toa'.
 
- [39]
+ [41]
 \openout2 = `text/prilohy.aux'.
 
- (text/prilohy.tex [40
+ (text/prilohy.tex [42
 
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <20.74> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1.
- [41] [42
+ [43] [44
 
 ]
-<obrazky/ZlepseneWilsonovoZrcadloNPN.png, id=444, 556.0775pt x 434.62375pt>
+<obrazky/ZlepseneWilsonovoZrcadloNPN.png, id=590, 556.0775pt x 434.62375pt>
 File: obrazky/ZlepseneWilsonovoZrcadloNPN.png Graphic file (type png)
 <use obrazky/ZlepseneWilsonovoZrcadloNPN.png>
 Package pdftex.def Info: obrazky/ZlepseneWilsonovoZrcadloNPN.png  used on input line 61.
 (pdftex.def)             Requested size: 278.03807pt x 217.31134pt.
- [43 <./obrazky/ZlepseneWilsonovoZrcadloNPN.png>] [44
+ [45 <./obrazky/ZlepseneWilsonovoZrcadloNPN.png>] [46
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <17.28> not available
@@ -1255,7 +1301,7 @@ although it is yet undefined on input line 101.
 Package acronym Warning: Acronym symfvz is not defined on input line 101.
 
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 104.
-(text/zkratky.tex) (text/zkratky.tex) [45] (C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+(text/zkratky.tex) (text/zkratky.tex) [47] (C:\Users\Dejvík\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
@@ -1263,18 +1309,18 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [46
-
-] [47] [48
+ [48
 
 ] [49] [50
+
+] [51] [52
 
 ]
 Overfull \hbox (3.72125pt too wide) in paragraph at lines 236--238
 \T1/lmr/m/n/12 Vkl�d� se do in-for-ma�-n�ho sys-t�mu VUT v Brn� ve vhod-n�m for-m�tu (ZIP, PDF...). 
  []
 
-) [51]
+) [53]
 \c@page@count=\count347
  (sablona-prace.aux (text/uvod.aux) (text/cile.aux) (text/reseni.aux) (text/vysledky.aux) (text/zaver.aux) (text/literatura.aux) (text/zkratky.aux) (text/prilohy.aux))
  ***********
@@ -1282,21 +1328,21 @@ LaTeX2e <2026-06-01>
 L3 programming layer <2026-09-09>
  ***********
 Package rerunfilecheck Info: File `sablona-prace.out' has not changed.
-(rerunfilecheck)             Checksum: E6FC0674050B0CB26FFB22D2DB65705B;3418.
+(rerunfilecheck)             Checksum: B79E4323D411EFA95CB03DBCD41113E9;5775.
  )
 (\end occurred when \ifx on line 28 was incomplete) 
 Here is how much of TeX's memory you used:
- 20539 strings out of 467392
- 331647 string characters out of 5404666
- 996419 words of memory out of 5000000
- 49213 multiletter control sequences out of 15000+600000
+ 20597 strings out of 467392
+ 332515 string characters out of 5404666
+ 998138 words of memory out of 5000000
+ 49241 multiletter control sequences out of 15000+600000
  813552 words of font info for 127 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,17n,90p,1053b,2397s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,17n,90p,1524b,2397s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/cbgreek/grmn1200.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx6.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsso12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/Dejvík/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtti10.pfb>
-Output written on sablona-prace.pdf (51 pages, 790859 bytes).
+Output written on sablona-prace.pdf (53 pages, 821929 bytes).
 PDF statistics:
- 694 PDF objects out of 1000 (max. 8388607)
- 172 named destinations out of 1000 (max. 500000)
- 228 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 845 PDF objects out of 1000 (max. 8388607)
+ 202 named destinations out of 1000 (max. 500000)
+ 364 words of extra memory for PDF output out of 10000 (max. 10000000)
 

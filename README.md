@@ -2,7 +2,7 @@
 
 *Smart home components based on ESP32 using the Thread protocol*
 
-Semestrální práce, VUT v Brně, FEKT, Ústav telekomunikací, 2026/2027.
+Bakalářská práce, VUT v Brně, FEKT, Ústav telekomunikací, 2026/2027.
 
 - **Autor:** David Šindelář
 - **Vedoucí:** doc. Ing. Ivo Lattenberg, Ph.D.
@@ -10,28 +10,55 @@ Semestrální práce, VUT v Brně, FEKT, Ústav telekomunikací, 2026/2027.
 
 ## O projektu
 
-Návrh a výroba tří jednoduchých zařízení chytré domácnosti s ESP32 komunikujících přes Thread (Matter): čidla teploty, žárovky a vypínače. Zařízení se budou integrovat do Home Assistant nebo Google Home.
+Návrh a realizace tří zařízení chytré domácnosti, která komunikují protokolem
+Matter přes síť Thread (IEEE 802.15.4) a jsou integrována do Home Assistant:
+
+| Zařízení | Napájení | Poznámka |
+|---|---|---|
+| Čidlo teploty | ze sítě | měření teploty, výběr čidla na základě porovnání |
+| Chytré světlo | ze sítě | Router v síti Thread, PWM stmívání |
+| Bateriový vypínač | baterie | ošetření zákmitů, nízká spotřeba |
+
+Všechna zařízení jsou postavena na čipu Espressif ESP32-C6
+(modul Seeed Studio XIAO ESP32-C6).
 
 ## Struktura repozitáře
 
-| Složka | Obsah |
+| Složka / soubor | Obsah |
 |---|---|
-| `bap_text/` | text práce (LaTeX) |
-| `esp_thread/` | projekt v KiCadu (schéma a DPS) |
-| `test_builds/` | testovací buildy firmwaru |
+| `bap_text/` | text práce (LaTeX, šablona VUT) |
+| `chytre_svetlo/` | projekt KiCad: chytré světlo (schéma, DPS) |
+| `Chytre_Tlacitko_BMS/` | projekt KiCad: bateriový vypínač (schéma, DPS) |
+| `esp_thread/` | projekt KiCad: chytrý teploměr |
+| `test_builds/` | testovací firmware: `c6-matter-teplomer-firmware.factory.bin`, konfigurace `test-teplomer.yaml` a `tlacitko-thread.yaml` |
 | `logs_for_debuging/` | logy z ladění |
 
 ## Stav
-Porovnání IKEA Alpstuga (referenční) a BMP180 na ESP32 přes Thread. Data pocházejí z Home Assistant, měřilo se 3 dny 10 h (1.–5. 10. 2026).
 
-| Veličina | Hodnota |
-|---|---|
-| Střední rozdíl (BMP180 − Alpstuga) | −0,31 °C |
-| Směrodatná odchylka rozdílu | 0,18 °C |
-| RMSE | 0,36 °C |
-| Rozsah rozdílu | −1,54 až +1,11 °C |
-| Korelace | 0,89 |
+Hotové je porovnání čidel teploty a vlhkosti vůči referenčnímu SHT40
+(jen klidné minuty). Rozdíl je počítán jako čidlo minus SHT40.
 
-Pravděpodobně bude třeba vyměnit senzor a porovnat s etalonovým měřidlem.
+**Teplota** (n = 1916)
 
-Práce je rozpracovaná.
+| Čidlo | střední rozdíl [°C] | s_d [°C] | RMSE [°C] | podíl \|d\| ≤ 0,7 °C |
+|---|---|---|---|---|
+| ALPSTUGA (SEN63C) | 0,43 | 0,07 | 0,44 | 100,0 % |
+| BMP180 | −0,75 | 0,02 | 0,75 | 0,5 % |
+| DHT11 | 0,00 | 0,04 | 0,04 | 100,0 % |
+| TIMMERFLOTTE | −0,43 | 0,08 | 0,44 | 100,0 % |
+
+**Vlhkost** (n = 1690)
+
+| Čidlo | střední rozdíl [%RH] | s_d [%RH] | RMSE [%RH] | podíl \|d\| ≤ 3,0 %RH |
+|---|---|---|---|---|
+| ALPSTUGA (SEN63C) | −7,53 | 0,45 | 7,55 | 0,0 % |
+| DHT11 | −0,22 | 0,55 | 0,60 | 100,0 % |
+| TIMMERFLOTTE | −4,88 | 0,25 | 4,88 | 0,0 % |
+
+Práce je rozpracovaná. Hotový je teoretický úvod (IEEE 802.15.4, CSA),
+další kapitoly se doplňují.
+
+## Sestavení textu
+
+Hlavní soubor je `bap_text/sablona-prace.tex`. Překlad: pdfLaTeX dvakrát.
+Seznam literatury je psán ručně v `bap_text/text/literatura.tex`.

@@ -4012,7 +4012,7 @@
 		(uuid "c9f5bcb6-fe56-4b3a-8429-8b5136ecc825")
 		(at 159.45 87.950884 -90)
 		(property "Reference" "U1"
-			(at -5.715 -14.705 90)
+			(at -9.900884 1.7 180)
 			(layer "F.SilkS")
 			(uuid "f9abe066-8f2b-45be-9622-a28f6393b2e1")
 			(effects
@@ -4648,6 +4648,17 @@
 			(uuid "2fd6cb45-17eb-43ce-9765-675280e95c5b")
 		)
 		(embedded_fonts no)
+		(model "C:/Users/Dejvík/Downloads/113991254/113991254.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
+			)
+		)
 	)
 	(footprint "TestPoint:TestPoint_Pad_D1.5mm"
 		(layer "F.Cu")
