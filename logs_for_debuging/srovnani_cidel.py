@@ -25,6 +25,7 @@ Poznamky:
     z porovnani vyradi (nepredlzuje se posledni hodnota).
   * Konec okna je posledni zaznam kterehokoli cidla teto veliciny; cidlo,
     ktere HA ukládá jen pri zmene, se do konce prodlouzi poslední hodnotou.
+  * LaTeX tabulky nepotrebuji balicek siunitx (stupne jako $^\\circ$C).
 
 Pridani cidla = jeden radek v seznamu 'sensors' dane veliciny.
 Zavislosti: pip install pandas numpy matplotlib
@@ -46,7 +47,7 @@ plt.rcParams["timezone"] = TZ   # nazorne datumy (UTC) se zobrazi v mistnim case
 
 QUANTITIES = {
     "teplota": {
-        "unit": "°C", "unit_tex": r"\si{\celsius}", "tol": 0.7,
+        "unit": "°C", "unit_tex": r"$^\circ$C", "tol": 0.7,
         "calm_max_change": 0.15,   # max. zmena za 10 min v "klidnych" minutach
         "sensors": [   # (kod, text v entity_id, popisek)
             ("S", "teplota_6", "SHT40"),
@@ -240,21 +241,41 @@ def plot_bland_altman(Q, q, cfg, names, pairs, suffix, out):
     save(fig, out, f"bland_altman_{q}{suffix}")
 
 
-def latex_table(rows, q, cfg, suffix, extra):
-    f = lambda v, p=2: f"{v:.{p}f}".replace(".", ",")
-    ut, tol = cfg["unit_tex"], str(cfg["tol"]).replace(".", "{,}")
-    L = [r"\begin{table}[ht]", r"\centering",
-         rf"\caption{{Porovnání čidel ({q}), rozdíl prvního a druhého čidla"
-         rf"{extra}}}",
+def tex_num(v, p=2):
+    """Cislo v matematickem modu s desetinnou carkou: $-0{,}75$."""
+    s = f"{v:.{p}f}"
+    if float(s) == 0:          # zadna zaporna nula (-0,00)
+        s = s.lstrip("-")
+    return "$" + s.replace(".", "{,}") + "$"
+
+
+def latex_table(rows, q, cfg, suffix, extra, ref_name, all_pairs):
+    ut = cfg["unit_tex"]
+    tol = str(cfg["tol"]).replace(".", "{,}")
+    what = ("rozdíl prvního a druhého čidla" if all_pairs
+            else f"rozdíl čidla a referenčního {ref_name}")
+    L = [r"\begin{table}[ht]",
+         r"\centering",
+         r"\small",
+         r"\setlength{\tabcolsep}{4pt}",
+         rf"\caption{{Porovnání čidel ({q}), {what}{extra}}}",
          rf"\label{{tab:porovnani-{q}{suffix}}}",
-         r"\begin{tabular}{lrrrrrrr}", r"\hline",
-         rf"Dvojice & $n$ & $\bar{{d}}$ [{ut}] & $s_d$ [{ut}] & LoA [{ut}] "
-         rf"& RMSE [{ut}] & $|d|\le {tol}$ [\%] & směrnice \\", r"\hline"]
+         r"\resizebox{\textwidth}{!}{%",
+         r"\begin{tabular}{lrrrrrrr}",
+         r"\hline",
+         rf"{'Dvojice' if all_pairs else 'Čidlo'} & $n$ & $\bar{{d}}$ [{ut}] "
+         rf"& $s_d$ [{ut}] & LoA [{ut}] & RMSE [{ut}] "
+         rf"& $|d|\le {tol}$ [\%] & směrnice \\",
+         r"\hline"]
     for name, r in rows:
-        loa = f"{f(r['loa_lo'])} až {f(r['loa_hi'])}"
-        L.append(f"{name} & {r['n']} & {f(r['mean'])} & {f(r['std'])} & {loa} "
-                 f"& {f(r['rmse'])} & {f(r['within'], 1)} & {f(r['slope'])} \\\\")
-    L += [r"\hline", r"\end{tabular}", r"\end{table}"]
+        loa = f"{tex_num(r['loa_lo'])} až {tex_num(r['loa_hi'])}"
+        L.append(f"{name} & {r['n']} & {tex_num(r['mean'])} & "
+                 f"{tex_num(r['std'])} & {loa} & {tex_num(r['rmse'])} & "
+                 f"{tex_num(r['within'], 1)} & {tex_num(r['slope'])} \\\\")
+    L += [r"\hline",
+          r"\end{tabular}%",
+          r"}",
+          r"\end{table}"]
     return "\n".join(L)
 
 
@@ -292,12 +313,15 @@ def process(q, cfg, t, v, ent, a, out):
         plot_box(Q, q, cfg, names, pairs, suffix, out)
         plot_regression(Q, q, cfg, names, pairs, suffix, out)
         plot_bland_altman(Q, q, cfg, names, pairs, suffix, out)
-        rows = [(f"{names[x]} − {names[y]}", stats_row(Q[x], Q[y], cfg["tol"]))
-                for x, y in pairs]
+        rows = []
+        for x, y in pairs:
+            label = f"{names[x]} − {names[y]}" if a.vsechny_dvojice else names[x]
+            rows.append((label, stats_row(Q[x], Q[y], cfg["tol"])))
         pd.DataFrame({n: r for n, r in rows}).T.round(3).to_csv(
             out / f"souhrn_{q}{suffix}.csv")
         (out / f"tabulka_{q}{suffix}.tex").write_text(
-            latex_table(rows, q, cfg, suffix, extra), encoding="utf-8")
+            latex_table(rows, q, cfg, suffix, extra, names[a.ref],
+                        a.vsechny_dvojice), encoding="utf-8")
         print(f"--- {q}{suffix or ' (vse)'} ---")
         for n_, r in rows:
             print(f"  {n_}: prumer {r['mean']:+.2f} {cfg['unit']}, "

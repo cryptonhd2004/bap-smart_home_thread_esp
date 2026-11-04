@@ -1,14 +1,18 @@
 \begin{table}[ht]
 \centering
-\caption{Porovnání čidel (vlhkost), rozdíl prvního a druhého čidla (celé okno)}
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Porovnání čidel (vlhkost), rozdíl čidla a referenčního SHT40 (celé okno)}
 \label{tab:porovnani-vlhkost}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrrr}
 \hline
-Dvojice & $n$ & $\bar{d}$ [\%RH] & $s_d$ [\%RH] & LoA [\%RH] & RMSE [\%RH] & $|d|\le 3{,}0$ [\%] & směrnice \\
+Čidlo & $n$ & $\bar{d}$ [\%RH] & $s_d$ [\%RH] & LoA [\%RH] & RMSE [\%RH] & $|d|\le 3{,}0$ [\%] & směrnice \\
 \hline
-ALPSTUGA (SEN63C) − SHT40 & 1979 & -7,52 & 0,48 & -8,46 až -6,58 & 7,54 & 0,0 & 1,04 \\
-DHT11 − SHT40 & 1979 & -0,21 & 0,55 & -1,28 až 0,87 & 0,58 & 100,0 & 1,15 \\
-TIMMERFLOTTE − SHT40 & 1979 & -4,87 & 0,31 & -5,48 až -4,26 & 4,88 & 0,2 & 0,93 \\
+ALPSTUGA (SEN63C) & 3815 & $-8{,}99$ & $0{,}87$ & $-10{,}70$ až $-7{,}28$ & $9{,}03$ & $0{,}0$ & $1{,}09$ \\
+DHT11 & 3815 & $-1{,}71$ & $0{,}96$ & $-3{,}59$ až $0{,}18$ & $1{,}96$ & $99{,}0$ & $1{,}26$ \\
+TIMMERFLOTTE & 3815 & $-6{,}12$ & $0{,}97$ & $-8{,}01$ až $-4{,}22$ & $6{,}19$ & $0{,}5$ & $1{,}04$ \\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \end{table}

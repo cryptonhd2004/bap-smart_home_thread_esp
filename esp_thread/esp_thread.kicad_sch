@@ -312,6 +312,113 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Mechanical:MountingHole_Pad"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom no)
+			(on_board yes)
+			(property "Reference" "H"
+				(at 0 6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "MountingHole_Pad"
+				(at 0 4.445 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Mounting Hole with connection"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "mounting hole"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "MountingHole*Pad*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "MountingHole_Pad_0_1"
+				(circle
+					(center 0 1.27)
+					(radius 1.27)
+					(stroke
+						(width 1.27)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "MountingHole_Pad_1_1"
+				(pin input line
+					(at 0 -2.54 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Xiao ESP32-C6:113991254"
 			(pin_names
 				(offset 1.016)
@@ -1254,6 +1361,7 @@
 			(at 90.17 53.8479 0)
 			(effects
 				(font
+					(face "Comic Sans MS")
 					(size 1.27 1.27)
 				)
 				(justify left)
@@ -1308,6 +1416,139 @@
 		)
 	)
 	(symbol
+		(lib_id "Mechanical:MountingHole_Pad")
+		(at 187.96 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "22a1ca47-2bd2-4e73-a285-ff5897c964b8")
+		(property "Reference" "H1"
+			(at 190.5 60.9599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole_Pad"
+			(at 190.5 63.4999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_2.5mm_Pad"
+			(at 187.96 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 187.96 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole with connection"
+			(at 187.96 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "43e01d27-e41b-411b-b226-0ebd1dec61d6")
+		)
+		(instances
+			(project ""
+				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
+					(reference "H1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 185.42 110.49 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2a4a6484-c20e-40df-9f4f-00ba8ed51522")
+		(property "Reference" "#PWR011"
+			(at 185.42 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 185.42 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 185.42 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 185.42 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 185.42 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1f749759-5f45-43ea-ae4d-4e5f5503838e")
+		)
+		(instances
+			(project ""
+				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
+					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:TestPoint")
 		(at 72.39 58.42 0)
 		(unit 1)
@@ -1321,6 +1562,7 @@
 			(at 74.93 53.8479 0)
 			(effects
 				(font
+					(face "Comic Sans MS")
 					(size 1.27 1.27)
 				)
 				(justify left)
@@ -1375,6 +1617,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Mechanical:MountingHole_Pad")
+		(at 185.42 107.95 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2e77cce5-2eaf-4c82-a06c-d11b19abf653")
+		(property "Reference" "H4"
+			(at 187.96 105.4099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole_Pad"
+			(at 187.96 107.9499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_2.5mm_Pad"
+			(at 185.42 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 185.42 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole with connection"
+			(at 185.42 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6baea390-e5c2-4719-82e9-9d8134c9759b")
+		)
+		(instances
+			(project "esp_thread"
+				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
+					(reference "H4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 86.36 78.74 180)
 		(unit 1)
@@ -1383,7 +1692,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6bc64556-3d64-4b18-8b29-55e43a915204")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR06"
 			(at 86.36 72.39 0)
 			(effects
 				(font
@@ -1433,7 +1742,140 @@
 		(instances
 			(project "esp_thread"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
-					(reference "#PWR04")
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 186.69 85.09 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9ab2ba1d-a812-45b5-8081-84dbf7984451")
+		(property "Reference" "#PWR07"
+			(at 186.69 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 186.69 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 186.69 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 186.69 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 186.69 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8e413fcb-04e3-41f1-8e51-c86855b8d7e4")
+		)
+		(instances
+			(project "esp_thread"
+				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole_Pad")
+		(at 186.69 82.55 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "acd667b0-6937-481b-809f-3ab30922f4ec")
+		(property "Reference" "H2"
+			(at 189.23 80.0099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole_Pad"
+			(at 189.23 82.5499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_2.5mm_Pad"
+			(at 186.69 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 186.69 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole with connection"
+			(at 186.69 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "46015c74-d438-4901-9ecd-9daeb37ba7bb")
+		)
+		(instances
+			(project "esp_thread"
+				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
+					(reference "H2")
 					(unit 1)
 				)
 			)
@@ -1449,7 +1891,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ae44143b-05c4-49cd-89d3-ee5ac7ba382f")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR04"
 			(at 149.86 69.85 0)
 			(effects
 				(font
@@ -1500,7 +1942,7 @@
 		(instances
 			(project ""
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
-					(reference "#PWR02")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -1516,7 +1958,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b0926c99-1e64-4847-a036-1c571ec831f0")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR09"
 			(at 160.02 95.25 0)
 			(effects
 				(font
@@ -1567,7 +2009,7 @@
 		(instances
 			(project ""
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
-					(reference "#PWR01")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -1583,7 +2025,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b7123fbf-a8df-4c90-85b4-6c5a2be80590")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR08"
 			(at 86.36 88.9 0)
 			(effects
 				(font
@@ -1634,7 +2076,7 @@
 		(instances
 			(project "esp_thread"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
-					(reference "#PWR05")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -1650,7 +2092,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c2656e86-0afd-4982-b905-91a3354db261")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR02"
 			(at 87.63 64.77 0)
 			(effects
 				(font
@@ -1700,7 +2142,139 @@
 		(instances
 			(project ""
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
-					(reference "#PWR06")
+					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 187.96 66.04 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c4bc901b-e81a-4d9c-bee6-7d34b7b28e1c")
+		(property "Reference" "#PWR03"
+			(at 187.96 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 187.96 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 187.96 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 187.96 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 187.96 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ab7e4804-e7f7-4392-849a-07d9ea10906b")
+		)
+		(instances
+			(project "esp_thread"
+				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
+					(reference "#PWR03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 184.15 99.06 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e72269be-ea90-4d9b-a5aa-478a27dc71a1")
+		(property "Reference" "#PWR010"
+			(at 184.15 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 184.15 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 184.15 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 184.15 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 184.15 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "69cc0a62-2cfd-464b-874f-ddc7af784b08")
+		)
+		(instances
+			(project "esp_thread"
+				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -1942,7 +2516,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f2b72958-f9c6-4815-b445-653074ffd24b")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR05"
 			(at 149.86 72.39 0)
 			(effects
 				(font
@@ -1993,7 +2567,7 @@
 		(instances
 			(project ""
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
-					(reference "#PWR03")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -2009,7 +2583,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f7ce3116-c91d-4837-bb4d-f09cea6b2b4b")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR01"
 			(at 72.39 54.61 0)
 			(effects
 				(font
@@ -2059,7 +2633,74 @@
 		(instances
 			(project ""
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
-					(reference "#PWR07")
+					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole_Pad")
+		(at 184.15 96.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f82a4199-4f40-4b10-a322-d3eb63c90a72")
+		(property "Reference" "H3"
+			(at 186.69 93.9799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole_Pad"
+			(at 186.69 96.5199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_2.5mm_Pad"
+			(at 184.15 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 184.15 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole with connection"
+			(at 184.15 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "874e3efd-f03e-427b-84ad-18d615af4c6d")
+		)
+		(instances
+			(project "esp_thread"
+				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
+					(reference "H3")
 					(unit 1)
 				)
 			)

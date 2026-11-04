@@ -1,14 +1,18 @@
 \begin{table}[ht]
 \centering
-\caption{Porovnání čidel (vlhkost), rozdíl prvního a druhého čidla (jen klidné minuty)}
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Porovnání čidel (vlhkost), rozdíl čidla a referenčního SHT40 (jen klidné minuty)}
 \label{tab:porovnani-vlhkost_klid}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrrr}
 \hline
-Dvojice & $n$ & $\bar{d}$ [\%RH] & $s_d$ [\%RH] & LoA [\%RH] & RMSE [\%RH] & $|d|\le 3{,}0$ [\%] & směrnice \\
+Čidlo & $n$ & $\bar{d}$ [\%RH] & $s_d$ [\%RH] & LoA [\%RH] & RMSE [\%RH] & $|d|\le 3{,}0$ [\%] & směrnice \\
 \hline
-ALPSTUGA (SEN63C) − SHT40 & 1690 & -7,53 & 0,45 & -8,42 až -6,65 & 7,55 & 0,0 & 1,04 \\
-DHT11 − SHT40 & 1690 & -0,22 & 0,55 & -1,31 až 0,87 & 0,60 & 100,0 & 1,15 \\
-TIMMERFLOTTE − SHT40 & 1690 & -4,88 & 0,25 & -5,36 až -4,40 & 4,88 & 0,0 & 0,94 \\
+ALPSTUGA (SEN63C) & 2882 & $-8{,}86$ & $0{,}69$ & $-10{,}22$ až $-7{,}50$ & $8{,}89$ & $0{,}0$ & $1{,}09$ \\
+DHT11 & 2882 & $-1{,}70$ & $0{,}94$ & $-3{,}54$ až $0{,}14$ & $1{,}94$ & $99{,}9$ & $1{,}28$ \\
+TIMMERFLOTTE & 2882 & $-6{,}21$ & $0{,}87$ & $-7{,}92$ až $-4{,}50$ & $6{,}27$ & $0{,}0$ & $1{,}10$ \\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
