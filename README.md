@@ -8,6 +8,14 @@ Bakalářská práce, VUT v Brně, FEKT, Ústav telekomunikací, 2026/2027.
 - **Vedoucí:** doc. Ing. Ivo Lattenberg, Ph.D.
 - **Detail práce:** https://www.vut.cz/studenti/zav-prace/detail/179908
 
+## Výkresy DPS a schémata
+
+| Zařízení | Schéma zapojení | Osazovací výkres DPS | Další |
+|---|---|---|---|
+| Čidlo teploty | [PDF](https://github.com/cryptonhd2004/bap-smart_home_thread_esp/blob/main/esp_thread/schema_zapojeni.pdf) | [PDF](https://github.com/cryptonhd2004/bap-smart_home_thread_esp/blob/main/esp_thread/plots/esp_thread__Assembly.pdf) | [projekt KiCad](https://github.com/cryptonhd2004/bap-smart_home_thread_esp/tree/main/esp_thread) |
+| Chytré světlo | [PDF](https://github.com/cryptonhd2004/bap-smart_home_thread_esp/blob/main/chytre_svetlo/schema_zapojeni.pdf) | [PDF](https://github.com/cryptonhd2004/bap-smart_home_thread_esp/blob/main/chytre_svetlo/plots/chytre_svetlo__Assembly.pdf) | [projekt KiCad](https://github.com/cryptonhd2004/bap-smart_home_thread_esp/tree/main/chytre_svetlo) |
+| Bateriový vypínač | [PDF](https://github.com/cryptonhd2004/bap-smart_home_thread_esp/blob/main/Chytre_Tlacitko_BMS/schema_zapojeni.pdf) | [PDF](https://github.com/cryptonhd2004/bap-smart_home_thread_esp/blob/main/Chytre_Tlacitko_BMS/plots/Chytre_Tlacitko_BMS__Assembly.pdf) | [projekt KiCad](https://github.com/cryptonhd2004/bap-smart_home_thread_esp/tree/main/Chytre_Tlacitko_BMS) |
+
 ## O projektu
 
 Návrh a realizace tří zařízení chytré domácnosti, která komunikují protokolem
@@ -16,7 +24,7 @@ Matter přes síť Thread (IEEE 802.15.4) a jsou integrována do Home Assistant:
 | Zařízení | Napájení | Poznámka |
 |---|---|---|
 | Čidlo teploty | ze sítě | měření teploty, výběr čidla na základě porovnání |
-| Chytré světlo | ze sítě | Router v síti Thread, PWM stmívání |
+| Chytré světlo | ze sítě | Router v síti Thread, RGB LED WS2812B (Matter light endpoint) |
 | Bateriový vypínač | baterie | ošetření zákmitů, nízká spotřeba |
 
 Všechna zařízení jsou postavena na čipu Espressif ESP32-C6
@@ -27,36 +35,43 @@ Všechna zařízení jsou postavena na čipu Espressif ESP32-C6
 | Složka / soubor | Obsah |
 |---|---|
 | `bap_text/` | text práce (LaTeX, šablona VUT) |
-| `chytre_svetlo/` | projekt KiCad: chytré světlo (schéma, DPS) |
-| `Chytre_Tlacitko_BMS/` | projekt KiCad: bateriový vypínač (schéma, DPS) |
-| `esp_thread/` | projekt KiCad: chytrý teploměr |
+| `chytre_svetlo/` | KiCad: chytré světlo (schéma, DPS, PDF schématu a osazení) |
+| `Chytre_Tlacitko_BMS/` | KiCad: bateriový vypínač (schéma, DPS, PDF, iBOM) |
+| `esp_thread/` | KiCad: chytrý teploměr (schéma, DPS, PDF, výrobní soubory v `production/`) |
 | `test_builds/` | testovací firmware: `c6-matter-teplomer-firmware.factory.bin`, konfigurace `test-teplomer.yaml` a `tlacitko-thread.yaml` |
-| `logs_for_debuging/` | logy z ladění |
+| `logs_for_debuging/` | logy z ladění, data a skripty porovnání čidel (`output/` – grafy) |
+| `github_qr.*` | QR kód repozitáře pro osazení na DPS |
 
 ## Stav
 
-Hotové je porovnání čidel teploty a vlhkosti vůči referenčnímu SHT40
-(jen klidné minuty). Rozdíl je počítán jako čidlo minus SHT40.
+| Část | Stav |
+|---|---|
+| Teoretický úvod (IEEE 802.15.4, CSA) | hotovo |
+| Porovnání čidel teploty a vlhkosti | hotovo |
+| Schéma a DPS – teploměr, světlo, vypínač | hotovo, připraveno k odsouhlasení |
+| Firmware | testovací buildy (teploměr, tlačítko), RGB světlo rozpracováno |
+| Text práce | rozpracováno (výsledky, návrh schémat) |
 
-**Teplota** (n = 1916)
+### Porovnání čidel
+
+Referenční čidlo je SHT40 (jen klidné minuty). Rozdíl je počítán jako čidlo minus SHT40.
+
+**Teplota** (n = 3292)
 
 | Čidlo | střední rozdíl [°C] | s_d [°C] | RMSE [°C] | podíl \|d\| ≤ 0,7 °C |
 |---|---|---|---|---|
-| ALPSTUGA (SEN63C) | 0,43 | 0,07 | 0,44 | 100,0 % |
-| BMP180 | −0,75 | 0,02 | 0,75 | 0,5 % |
+| ALPSTUGA (SEN63C) | 0,19 | 0,18 | 0,26 | 100,0 % |
+| BMP180 | −0,74 | 0,02 | 0,74 | 8,3 % |
 | DHT11 | 0,00 | 0,04 | 0,04 | 100,0 % |
-| TIMMERFLOTTE | −0,43 | 0,08 | 0,44 | 100,0 % |
+| TIMMERFLOTTE | −0,52 | 0,07 | 0,53 | 99,4 % |
 
-**Vlhkost** (n = 1690)
+**Vlhkost** (n = 2882)
 
 | Čidlo | střední rozdíl [%RH] | s_d [%RH] | RMSE [%RH] | podíl \|d\| ≤ 3,0 %RH |
 |---|---|---|---|---|
-| ALPSTUGA (SEN63C) | −7,53 | 0,45 | 7,55 | 0,0 % |
-| DHT11 | −0,22 | 0,55 | 0,60 | 100,0 % |
-| TIMMERFLOTTE | −4,88 | 0,25 | 4,88 | 0,0 % |
-
-Práce je rozpracovaná. Hotový je teoretický úvod (IEEE 802.15.4, CSA),
-další kapitoly se doplňují.
+| ALPSTUGA (SEN63C) | −8,86 | 0,69 | 8,89 | 0,0 % |
+| DHT11 | −1,70 | 0,94 | 1,94 | 99,9 % |
+| TIMMERFLOTTE | −6,21 | 0,87 | 6,27 | 0,0 % |
 
 ## Sestavení textu
 
