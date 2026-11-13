@@ -16,7 +16,44 @@ Standard IEEE 802.15.4 definuje fyzickou vrstvu (PHY) a vrstvu řízení příst
 
 
 \section{Thread}
+Thread je síťový protokol založený na IPv6, určený pro zařízení internetu věcí
+s~nízkou spotřebou, která komunikují v~mesh síti podle standardu
+IEEE~802.15.4~\cite{openthread-primer}. Na rozdíl od protokolů ZigBee nebo
+Z-Wave je Thread na těchto technologiích nezávislý a přenáší přímo pakety
+IP~\cite{openthread-primer}. Stejný IPv6 základ využívá i protokol Matter,
+díky čemuž mohou zařízení Matter pracovat v~síti Thread bez
+překladu~\cite{thread-group}.
 
+K~přenosu paketů IPv6 přes rádio IEEE~802.15.4 slouží adaptační vrstva
+6LoWPAN. Ta zajišťuje zapouzdření paketů IPv6, jejich fragmentaci a opětovné
+skládání a také kompresi hlaviček, protože rámec 802.15.4 je podstatně menší
+než minimální jednotka přenosu IPv6~\cite{thread-6lowpan}. Směrování mezi
+směrovači probíhá podle tabulky nejbližšího dalšího skoku, kterou si směrovače
+vyměňují pomocí protokolu MLE; síť může obsahovat nejvýše 32 aktivních
+směrovačů~\cite{silabs-thread}.
+
+Zařízení v~síti Thread mají jednu ze dvou rolí. Směrovač (Router) předává
+pakety ostatním zařízením a má vysílač trvale zapnutý. Koncové zařízení
+(End Device) komunikuje s~jedním směrovačem, který je jeho rodičem, a nepředává
+cizí pakety; proto může vysílač vypínat a šetřit energii~\cite{openthread-roles}.
+Podle výbavy se zařízení dělí na plnohodnotná (FTD) a minimální (MTD).
+Plnohodnotné zařízení má rádio stále zapnuté, a může tedy pracovat jako
+směrovač. Minimální zařízení všechny zprávy posílá svému rodiči a dělí se
+na MED s~trvale zapnutým rádiem a SED, které se probouzí jen občas, aby se
+zeptalo rodiče na čekající zprávy~\cite{openthread-roles}. Role Leader
+zastává vždy jeden směrovač v~každém oddílu sítě; je volen dynamicky
+a spravuje množinu směrovačů a síťovou konfiguraci~\cite{openthread-roles}.
+Síť může obsahovat nejvýše 32 směrovačů a každý z~nich smí mít až
+511 koncových zařízení; Thread se snaží udržovat počet směrovačů mezi 16 a 23
+tím, že povyšuje zařízení způsobilá k~roli směrovače (REED)~\cite{openthread-roles}.
+
+Spojení sítě Thread s~ostatními sítěmi IP, například s~Wi-Fi nebo
+s~Ethernetem, zajišťuje hraniční směrovač (Border Router). Verze Thread~1.3.0
+jeho funkce standardizovala: stará se o konfiguraci prefixů IPv6, směrování
+mezi sítěmi a o vyhledávání služeb pomocí DNS-SD, aniž by na síti Thread bylo
+nutné používat multicast~\cite{thread-group}. V~této práci jsou čidlo teploty
+a světlo nastavena jako plnohodnotná zařízení (FTD) schopná pracovat
+jako směrovač, zatímco vypínač je minimální zařízení (MTD).
 
 
 \section{Matter}

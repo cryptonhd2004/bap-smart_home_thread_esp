@@ -1,4 +1,5 @@
 ﻿Designator,Footprint,Quantity,Value,LCSC Part #
-J1,PinSocket_2x02_P1.27mm_Vertical,1,Conn_02x02_Counter_Clockwise,
+J1,PinSocket_2x02_P2.54mm_Vertical,1,Conn_02x02_Counter_Clockwise,
+"R1, R2",0805,2,R,
 "TP1, TP2",TestPoint_Pad_D1.5mm,2,TestPoint,
 U1,MODULE_113991254,1,113991254,
