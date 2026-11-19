@@ -57,7 +57,28 @@ jako směrovač, zatímco vypínač je minimální zařízení (MTD).
 
 
 \section{Matter}
+Matter je aplikační protokol, který běží nad vrstvou IP a sjednocuje způsob,
+jakým zařízení různých výrobců popisují své schopnosti a přijímají příkazy
+\cite{csa-matter}. Podkladovou síť tvoří Wi-Fi, Ethernet nebo Thread
+\cite{csa-matter-arrives}. Zařízení se v Matteru popisuje hierarchickým
+datovým modelem. Nejvyšším prvkem je uzel (node), který obsahuje jeden nebo
+více koncových bodů (endpoint). Každý koncový bod představuje jednu funkci
+zařízení a skládá se z clusterů. Cluster sdružuje atributy, příkazy a události
+jedné vlastnosti: atribut udává stav nebo konfiguraci, například zda světlo
+svítí, příkaz je akce, kterou lze nad clusterem provést, a událost je záznam
+o proběhlé změně stavu~\cite{silabs-matter-datamodel}. Čidlo teploty v~této
+práci využívá cluster Temperature Measurement s~identifikátorem 0x0402,
+žárovka clustery On/Off (0x0006) a Level Control (0x0008) a vypínač cluster
+Switch (0x003B)~\cite{csa-matter}.
 
+Přidání zařízení do sítě se v~Matteru nazývá commissioning. Ovladač
+(commissioner) nejprve najde zařízení, které se nabízí k~přidání, a pomocí
+kódu z~QR štítku s~ním naváže zabezpečený kanál PASE~\cite{google-matter-commissioning}
+postavený na protokolu SPAKE2+~\cite{silabs-matter-security}. Poté ověří pravost
+zařízení, nainstaluje do něj provozní certifikát a předá mu přihlašovací údaje
+k~síti Wi-Fi nebo Thread. Po připojení k~síti se zařízení znovu vyhledá pomocí
+DNS-SD a naváže se relace CASE, která používá nainstalované certifikáty
+a šifruje veškerou další komunikaci~\cite{google-matter-commissioning}.
 
 
 \subsection{Connectivity Standards Alliance}
@@ -83,13 +104,118 @@ firmwaru zařízení a v atestačních certifikátech~\cite{matter-handbook}.
 
 \subsection{Matter over Wi-Fi}
 
-
+Matter lze provozovat nad Wi-Fi, přičemž zařízení se připojuje přímo k~přístupovému
+bodu domácí sítě. Při přidání do sítě mu ovladač předá název sítě (SSID)
+a heslo~\cite{silabs-matter-commissioning}. Zařízení pak získá adresu IP
+a komunikuje s~ostatními prvky přes lokální síť. Topologie je tedy hvězdicová:
+všechna zařízení jsou připojena k~jednomu přístupovému bodu, který je zároveň
+společným bodem selhání~\cite{quectel-matter-wifi-thread}. Výhodou je, že
+varianta nevyžaduje žádný hraniční směrovač ani další hardware kromě stávající
+sítě Wi-Fi. Wi-Fi poskytuje také vysokou propustnost, uváděnou od desítek Mb/s
+po více než 1~Gb/s, a hodí se proto pro zařízení s~velkým objemem dat, jako jsou
+kamery nebo multimediální zobrazovače~\cite{quectel-matter-wifi-thread}.
+Nevýhodou je vyšší spotřeba rádia, která vyžaduje buď síťové napájení, nebo
+časté výměny baterií~\cite{quectel-matter-wifi-thread}.
 
 \subsection{Matter over Thread}
 
-
+Při přenosu přes Thread ovladač během přidání zařízení předá parametry sítě,
+zejména identifikátor PAN a klíč sítě~\cite{silabs-matter-commissioning}.
+Zařízení se připojí k~existující síti Thread, která tvoří samoopravnou mesh
+síť, takže dokáže reagovat na přidání nebo odebrání zařízení~\cite{nordic-matter}.
+Zařízení s~trvalým napájením obvykle pracují jako směrovače (viz sekce Thread),
+a zvětšují tak dosah sítě~\cite{nordic-matter}. K~ostatním sítím IP, včetně
+sítě s~ovladačem, se Thread připojuje přes hraniční směrovač
+(kapitola~\ref{sec:otbr}), který je pro provoz nezbytný~\cite{quectel-matter-wifi-thread}.
+Přenosová rychlost rádia je 250~kb/s, v~praxi použitelných je přibližně
+125~kb/s. Takový výkon stačí pro malá zařízení, která komunikují často,
+ale přenášejí jen malé množství dat~\cite{quectel-matter-wifi-thread}. Thread je
+proto vhodný pro bateriová zařízení, jako jsou čidla, zámky nebo
+vypínače~\cite{quectel-matter-wifi-thread}, zatímco pro přenos videa nebo zvuku
+se nehodí~\cite{nordic-matter}.
 
 \section{ESPHome}
+
+\subsection{Nástroj ESPHome}
+
+ESPHome je nástroj, který z~konfigurace ve formátu YAML vytváří firmware pro
+mikrokontroléry. Uživatel v~souboru popíše hardwarové komponenty, jako jsou
+čidla, spínače nebo displeje, a ESPHome ji přeloží na firmware určený pro
+konkrétní čip, který se potom nahraje do zařízení~\cite{ha-esphome}. Nástroj
+podporuje především čipy ESP32 a ESP8266, ale také Raspberry Pi RP2040,
+RP2350 a další~\cite{esphome-homepage}. Mezi jeho vlastnosti patří bezdrátová
+aktualizace firmwaru, modulární architektura s~velkým počtem komponent
+a lokální ovládání bez cloudu~\cite{esphome-homepage}.
+
+Komunikaci se zařízením zajišťuje nativní API nástroje ESPHome. Je to
+protokol nad TCP založený na protokolových vyrovnávacích pamětech (protocol
+buffers), který používá Home Assistant, nástroj ESPHome a systém
+ioBroker~\cite{esphome-api}. Zařízení s~aktivním rozhraním API se v~Home
+Assistantu objeví po zadání jména nebo adresy a jeho entity jsou potom
+dostupné bez dalšího programování~\cite{ha-esphome,esphome-api}.
+
+\subsection{Externí komponenty}
+
+Funkce, které nejsou součástí nástroje ESPHome, lze doplnit pomocí externích
+komponent. Ty se načítají přímo z~repozitáře Git, například pomocí zkratky
+\texttt{github://uživatel/repozitář@větev}, nebo z~lokální složky~\cite{esphome-external-components}.
+Tento mechanismus využívá i komponenta \texttt{esphome-matter} použitá v~této
+práci.
+
+\subsection{Podpora sítě Thread}
+
+Komponenta \texttt{openthread} umožňuje uzlům ESPHome komunikovat s~Home
+Assistantem přes síť Thread. Je dostupná pro čipy ESP32 s~rádiem IEEE~802.15.4
+(například ESP32-C6 a ESP32-H2) při použití frameworku ESP-IDF~\cite{esphome-openthread}.
+Role zařízení se nastavuje parametrem \texttt{device\_type}: FTD je zařízení
+způsobilé k~povýšení na směrovač a MTD takové povýšení nemůže
+získat~\cite{esphome-openthread}. Nastavením periody dotazování (\texttt{poll\_period})
+se minimální zařízení chová jako spící koncové zařízení~\cite{esphome-openthread}.
+Pro propojení sítě Thread s~ostatními sítěmi je potřeba hraniční směrovač;
+ESP32 s~nástrojem ESPHome může tuto roli také převzít~\cite{esphome-openthread}.
+
+\subsection{ESP-IDF a ESP-Matter}
+
+ESP-Matter je oficiální vývojový balík společnosti Espressif pro protokol
+Matter na čipech ESP32. Je postaven na otevřeném balíku Matter SDK
+(projekt connectedhomeip) a nabízí zjednodušené programové rozhraní,
+podporu běžných periferií a nástroje pro zabezpečení a výrobu~\cite{espressif-esp-matter}.
+Vývoj probíhá ve frameworku ESP-IDF, který je oficiálním vývojovým
+prostředím čipů ESP32~\cite{espressif-esp-matter}. ESPHome používá na čipech ESP32
+rovněž ESP-IDF, a může proto využít stejné knihovny.
+
+\subsection{Komponenta esphome-matter}
+
+Komponenta \texttt{esphome-matter} přidává do nástroje ESPHome podporu
+protokolu Matter 1.6 a podporuje čipy ESP32 s~frameworkem ESP-IDF; framework
+Arduino nepodporuje~\cite{esphome-matter}. Je založena na balíku ESP-Matter,
+takže funkce, které nejsou podporovány v~něm, nemůže podporovat ani
+tato komponenta~\cite{esphome-matter}. Matter lze provozovat nad Wi-Fi
+i nad Threadem, pro Thread je potřeba komponenta \texttt{openthread}
+a ESPHome ve verzi 2026.6.0 nebo novější~\cite{esphome-matter}.
+
+Přidání zařízení do sítě Matter se u~této komponenty liší od běžného postupu:
+přihlašovací údaje k~síti Wi-Fi nebo Thread zařízení získá z~konfigurace
+YAML, a zařízení proto nevyužívá komisionování přes BLE, které je u~většiny
+zařízení Matter výchozí. Párovací kód se zobrazí v~logu po spuštění nebo ho
+lze získat z~textového čidla v~Home Assistantu~\cite{esphome-matter}.
+Komisionování přes BLE je podle autora komponenty zatím nefunkční~\cite{esphome-matter}.
+Komponenta je navíc ve fázi raného vývoje, může mít problémy se stabilitou,
+zejména při opětovném připojení po restartu, a její konfigurační schéma se
+může změnit~\cite{esphome-matter}.
+
+Nástroj ESPHome byl zvolen z~důvodu podpory bezdrátových aktualizací firmwaru
+(OTA) a jednodušší konfigurace. Bezdrátová aktualizace umožňuje nahrát novou
+verzi firmwaru do zařízení bez nutnosti připojovat jej kabelem, což je
+výhodné zejména u~zařízení zabudovaných do krytu nebo umístěných mimo
+dosah počítače~\cite{esphome-homepage}. Konfigurace je v~nástroji ESPHome
+deklarativní: místo psaní zdrojového kódu v~jazyce C/C++ se v~souboru YAML
+popíše, které komponenty zařízení obsahuje a jak jsou propojeny~\cite{ha-esphome}.
+Zařízení se navíc po zapnutí rozhraní API objeví v~Home Assistantu bez dalšího
+programování~\cite{ha-esphome,esphome-api}. Oproti přímému použití
+balíku ESP-Matter~\cite{espressif-esp-matter}, který vyžaduje psaní
+a překlad programu v~jazyce C++, je proto vývoj rychlejší a změny konfigurace
+lze provádět bez zásahu do zdrojového kódu.
 
 
 \section{Ekosystémy}

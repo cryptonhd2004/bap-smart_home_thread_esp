@@ -4,9 +4,19 @@
 %Mikrokontroler Xiao ESP32-C6 od společnosti Seeed Studio byl vybrán pro všechny tři prvky chytré domácnosti. Tento mikrokontroler je vybaven čipem ESP32-C6, jež disponuje rádiem IEEE 802.0.11ax pro Wi-Fi 6, IEEE 802.15.1 pro Bluetooth 5.3 a IEEE 802.15.4 pro Thread a podporuje protokol Matter. Je vybaven 4 MB flash pamětí a 400 kB SRAM pamětí. Pro napájení je možné použít USB-C konektor nebo pájecí plošky pro připojení baterie. Samotný mikrokontroler je vybaven nabíjecím obvodem pro Li-ion/Li-Po baterie. Mikrokontroler je rovněž vybaven konektorem MHF4 pro připojení externí antény. 
 Pro všechny tři prvky chytré domácnosti byl zvolen vývojový modul Xiao ESP32-C6 od společnosti Seeed Studio~\cite{seeed-xiao-wiki}. Jeho jádrem je čip ESP32-C6, který nabízí rádio IEEE~802.11ax pro Wi-Fi~6, IEEE~802.15.1 pro Bluetooth~5.3 a IEEE~802.15.4 pro Thread, a podporuje tak protokol Matter~\cite{espressif-esp32c6-ds}. Modul disponuje 4~MB flash paměti a 400~kB SRAM. Napájet jej lze přes konektor USB-C nebo přes pájecí plošky určené pro připojení baterie, přičemž nabíjení Li-ion/Li-Po článků zajišťuje přímo integrovaný nabíjecí obvod. Pro externí anténu je k dispozici konektor MHF4~\cite{seeed-xiao-wiki,seeed-xiao-product}.
 \subsection{Čidlo teploty}
+
 \subsubsection{Výběr teplotního čidla}
-%Bylo porovnáno několik běžně dostupných teplotních čidel z hlediska přesnosti měření, rychlosti odezvy a ceny. Jako referenční bylo použito čidlo SEN63C, které je součástí komerčního chytrého senzoru IKEA ALPSTUGA~\cite{sensirion-alpstuga,ikea-alpstuga,sensirion-sen6x}. Srovnávána byla čidla DHT11~\cite{aosong-dht11}, BMP180~\cite{bosch-bmp180} a IKEA TIMMERFLOTTE~\cite{ikea-timmerflotte}.
-Bylo porovnáno několik běžně dostupných čidel teploty a relativní vlhkosti z hlediska systematické odchylky, rozptylu a lineárnosti odezvy. Jako referenční bylo použito čidlo SHT40~\cite{sensirion-sht4x}, vůči kterému byla vyhodnocena čidla SEN63C, které je součástí komerčního chytrého senzoru IKEA ALPSTUGA~\cite{sensirion-sen6x,sensirion-alpstuga,ikea-alpstuga}, dále DHT11~\cite{aosong-dht11}, BMP180~\cite{bosch-bmp180} a IKEA TIMMERFLOTTE~\cite{ikea-timmerflotte}. Čidlo BMP180 bylo hodnoceno pouze z hlediska teploty.
+\label{sec:vyber-cidla}
+
+Bylo porovnáno několik běžně dostupných čidel teploty a relativní vlhkosti
+z~hlediska systematické odchylky, rozptylu a lineárnosti odezvy. Jako
+referenční bylo použito čidlo SHT40~\cite{sensirion-sht4x}, vůči kterému byla
+vyhodnocena čidla SEN63C, které je součástí komerčního chytrého senzoru
+IKEA ALPSTUGA~\cite{sensirion-sen6x,sensirion-alpstuga,ikea-alpstuga}, dále
+DHT11~\cite{aosong-dht11}, BMP180~\cite{bosch-bmp180} a IKEA
+TIMMERFLOTTE~\cite{ikea-timmerflotte}. Čidlo BMP180 bylo hodnoceno pouze
+z~hlediska teploty.
+
 \begin{table}[ht]
 \centering
 \small
@@ -68,8 +78,104 @@ hodnota čidla minus hodnota referenčního čidla SHT40. $|d|\le 3{,}0$ -- pod�
 měření, u nichž absolutní hodnota rozdílu nepřekročila 3,0~\%\,RH.
 \end{minipage}
 \end{table}
+
+\subsubsection{Firmware teploměru}
+
+Firmware teploměru je popsán konfigurací ve formátu YAML pro nástroj ESPHome
+s~externí komponentou \texttt{esphome-matter}~\cite{esphome-matter}. Čip
+ESP32-C6 pracuje jako plnohodnotné zařízení sítě Thread (FTD), které může
+vykonávat roli směrovače~\cite{esphome-openthread}.
+
+Popsaná konfigurace je testovací. Sloužila k~porovnání čidel
+(kap.~\ref{sec:vyber-cidla}) a obsahuje všechna tři čidla, tedy BMP180
+a SHT40 připojená ke sběrnici I2C (SDA na GPIO22, SCL na GPIO23) a DHT11
+na vstupu GPIO2. Hodnoty se čtou každých 30~s (BMP180) nebo 60~s (SHT40
+a DHT11). Každá veličina je v~Matteru publikována na samostatném koncovém
+bodě (tab.~\ref{tab:endpointy}), takže ovladač vidí všechna čidla jako
+nezávislá zařízení. Výsledné zařízení je osazeno pouze čidlem SHT40, které
+je k~desce připojeno modulem LaskaKit přes konektor a sběrnice I2C má
+pull-up odpory přímo na desce (schéma v~příloze). Výsledná konfigurace
+proto publikuje jen teplotu a relativní vlhkost z~tohoto čidla.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Koncové body testovací konfigurace teploměru}
+\label{tab:endpointy}
+\begin{tabular}{rll}
+\hline
+Koncový bod & Veličina & Zdroj \\
+\hline
+1 & Teplota & BMP180 \\
+2 & Tlak & BMP180 \\
+5 & Teplota & DHT11 \\
+6 & Teplota & SHT40 \\
+7 & Relativní vlhkost & SHT40 \\
+8 & Relativní vlhkost & DHT11 \\
+\hline
+\end{tabular}
+\end{table}
+
 \subsection{Chytré světlo}
-Pro návrh chytrého světla bylo použito adresovatelné LED světlo WS2812B, které je běžně dostupné na trhu. Toto světlo umožňuje ovládání jednotlivých LED diod. 
+
+\subsubsection{Výběr světelného prvku}
+
+Jako světelný prvek byla zvolena adresovatelná LED WS2812B. Obsahuje
+v~jednom pouzdře 5050 tři LED (červenou, zelenou a modrou) a řídicí obvod,
+který přijímá data po jednom vodiči rychlostí 800~kb/s~\cite{worldsemi-ws2812b}.
+Barva každé diody je zadána 24 bity v~pořadí zelená, červená, modrá,
+přičemž se vysílá nejprve nejvýznamnější bit~\cite{worldsemi-ws2812b}.
+Napájecí napětí obvodu je podle výrobce 3,5 až 5,3~V a vstupní napětí
+datového vstupu musí pro logickou jedničku dosáhnout alespoň
+$0{,}7\,V_{DD}$~\cite{worldsemi-ws2812b}, tedy asi 3,5~V při napájení
+z~5~V. Logické úrovně čipu ESP32-C6 (3,3~V) tuto hranici nesplňují, a proto
+je mezi mikrokontrolér a LED zařazen převodník úrovní.
+
+\subsubsection{Zapojení}
+
+Světlo je napájeno ze sítě, a může proto v~síti Thread pracovat jako směrovač.
+Základem desky je modul XIAO ESP32-C6. Napájení zajišťuje konektor USB-C
+na samostatné desce (breakout), která je do desky zasunuta do šestipinové
+zásuvky J1. Z~něj je 5~V přivedeno paralelně na mikrokontrolér a na LED
+pásek, takže proud pásku neprochází napájecími obvody modulu XIAO. Stejné
+uspořádání, kdy je pásek napájen přímo ze zdroje a řídicí obvod je k~němu
+připojen paralelně, doporučuje dokumentace projektu WLED~\cite{wled-wiring}.
+
+Datový výstup mikrokontroléru je přes převodník úrovní s~tranzistorem BSS138
+a dvěma rezistory 10~k$\Omega$ připojen na konektor J2 pro LED pásek.
+Napájecí napětí 5~V je
+blokováno kondenzátorem 470~\textmu F, který vyrovnává skokové změny odběru
+LED při změně barvy. Kondenzátor stejné kapacity je zapojen ve větvi 3,3~V
+u~mikrokontroléru, což odpovídá doporučenému schématu projektu
+WLED~\cite{wled-wiring}. Výrobce desek NeoPixel doporučuje pro napájení
+LED kondenzátor o~kapacitě 500 až 1000~\textmu F~\cite{adafruit-neopixel}.
+Deska obsahuje také tři testovací body.
+
+\subsubsection{Napájení a omezení odběru}
+
+Světlo je určeno pro 185 adresovatelných LED, jejichž počet je v~konfiguraci
+nastavitelný. Jedna dioda WS2812B odebírá při plném jasu bílé barvy až
+60~mA, zatímco při běžných animacích je odběr výrazně nižší a jako orientační
+hodnota se používá 20~mA~\cite{adafruit-neopixel}. Pro 185 diod to znamená
+odběr 11,1~A, respektive 3,7~A, tedy výkon 55,5~W, respektive 18,5~W při 5~V.
+Světlo je napájeno zdrojem 15~W (5~V, 3~A). Konektor USB-C bez protokolu
+USB Power Delivery přitom poskytuje nejvýše 5~V při 3~A~\cite{ti-usb-type-c},
+takže zdroj nedokáže dodat plný odběr a firmware musí proud omezit. Nástroj
+ESPHome k~tomu nabízí odhad odběru podle barev a jasu pixelů a omezení
+celkového proudu, při jehož překročení jsou hodnoty všech pixelů zmenšeny
+o~stejný poměr~\cite{esphome-light}. Mez byla nastavena na 2\,500~mA, čímž
+zůstává rezerva pro mikrokontrolér a toleranci zdroje. Při této mezi je
+největší dosažitelný jas plně bílé barvy asi 32~\% podle odhadu nástroje
+ESPHome a 22~\% při odběru 60~mA na diodu. [DOPLNIT: naměřený odběr]
+
+\subsubsection{Firmware}
+
+Světlo je v~Matteru publikováno jako Extended Color Light s~identifikátorem
+typu zařízení 0x010D~\cite{espressif-arduino-matter-light}. Pro ovládání se
+používají clustery On/Off (0x0006), Level Control (0x0008) a Color Control
+(0x0300)~\cite{csa-matter}. Diody jsou buzeny periferií RMT čipu ESP32-C6
+z~pinu GPIO18. Zařízení pracuje jako plnohodnotné zařízení Thread (FTD)
+a v~síti vykonává roli směrovače~\cite{esphome-openthread}.
 \subsection{Bateriový vypínač}
 
 \section{Návrh scémat}
