@@ -144,7 +144,7 @@
 		(property ki_fp_filters "MountingHole*Pad*")
 		(path "/2e77cce5-2eaf-4c82-a06c-d11b19abf653")
 		(sheetname "/")
-		(sheetfile "esp_thread.kicad_sch")
+		(sheetfile "thread_thermometer.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -259,7 +259,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/1040eeb8-b072-4525-b75e-7b556a2cb9af")
 		(sheetname "/")
-		(sheetfile "esp_thread.kicad_sch")
+		(sheetfile "thread_thermometer.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -357,7 +357,7 @@
 		(property ki_fp_filters "MountingHole*Pad*")
 		(path "/22a1ca47-2bd2-4e73-a285-ff5897c964b8")
 		(sheetname "/")
-		(sheetfile "esp_thread.kicad_sch")
+		(sheetfile "thread_thermometer.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -622,7 +622,7 @@
 		)
 		(path "/e91a1cce-35d4-4b5b-a449-0324fb60c996")
 		(sheetname "/")
-		(sheetfile "esp_thread.kicad_sch")
+		(sheetfile "thread_thermometer.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1070,7 +1070,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 -0 -0)
+				(xyz -90 0 0)
 			)
 		)
 	)
@@ -1131,7 +1131,7 @@
 		(property ki_fp_filters "MountingHole*Pad*")
 		(path "/f82a4199-4f40-4b10-a322-d3eb63c90a72")
 		(sheetname "/")
-		(sheetfile "esp_thread.kicad_sch")
+		(sheetfile "thread_thermometer.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1246,7 +1246,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/2e30b219-b10d-481d-a98c-3b9074030f50")
 		(sheetname "/")
-		(sheetfile "esp_thread.kicad_sch")
+		(sheetfile "thread_thermometer.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1344,7 +1344,7 @@
 		(property ki_fp_filters "MountingHole*Pad*")
 		(path "/acd667b0-6937-481b-809f-3ab30922f4ec")
 		(sheetname "/")
-		(sheetfile "esp_thread.kicad_sch")
+		(sheetfile "thread_thermometer.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1466,7 +1466,7 @@
 		(property ki_fp_filters "Connector*:*_2x??_*")
 		(path "/fa00b1cb-2c53-4896-8f20-49f33031b9c7")
 		(sheetname "/")
-		(sheetfile "esp_thread.kicad_sch")
+		(sheetfile "thread_thermometer.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2540,7 +2540,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/1ddbddd9-0ded-4986-bd17-43a932e878eb")
 		(sheetname "/")
-		(sheetfile "esp_thread.kicad_sch")
+		(sheetfile "thread_thermometer.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2704,7 +2704,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/6ecff054-a84c-4926-87c6-12d5fcc535ae")
 		(sheetname "/")
-		(sheetfile "esp_thread.kicad_sch")
+		(sheetfile "thread_thermometer.kicad_sch")
 		(units
 			(unit
 				(name "A")

@@ -1793,7 +1793,7 @@
 			(uuid "cf322108-b42b-44df-808f-bc37023a2b07")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR013")
 					(unit 1)
@@ -1873,7 +1873,7 @@
 			(uuid "fccea366-ea7e-4c81-b227-99c90212dd0c")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "TP2")
 					(unit 1)
@@ -1955,7 +1955,7 @@
 			(uuid "b685c21f-8174-4332-b727-8d266ee482f2")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "R1")
 					(unit 1)
@@ -2034,7 +2034,7 @@
 			(uuid "43e01d27-e41b-411b-b226-0ebd1dec61d6")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "H1")
 					(unit 1)
@@ -2112,7 +2112,7 @@
 			(uuid "1f749759-5f45-43ea-ae4d-4e5f5503838e")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR011")
 					(unit 1)
@@ -2192,7 +2192,7 @@
 			(uuid "38bf7c72-57ba-41c6-b8eb-a1a3fc13335e")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "TP1")
 					(unit 1)
@@ -2271,7 +2271,7 @@
 			(uuid "6baea390-e5c2-4719-82e9-9d8134c9759b")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "H4")
 					(unit 1)
@@ -2348,7 +2348,7 @@
 			(uuid "e3ca48a4-f02d-4fb0-b0e4-c36b3b6290c2")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR06")
 					(unit 1)
@@ -2430,7 +2430,7 @@
 			(uuid "b3902c73-a166-4ca1-b4af-4483f7674269")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "R2")
 					(unit 1)
@@ -2508,7 +2508,7 @@
 			(uuid "8e413fcb-04e3-41f1-8e51-c86855b8d7e4")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR07")
 					(unit 1)
@@ -2587,7 +2587,7 @@
 			(uuid "46015c74-d438-4901-9ecd-9daeb37ba7bb")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "H2")
 					(unit 1)
@@ -2666,7 +2666,7 @@
 			(uuid "27fae337-860d-40be-90db-2aab6307c5db")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR04")
 					(unit 1)
@@ -2745,7 +2745,7 @@
 			(uuid "c36cd76f-5ecd-4578-ab3e-25b24121576f")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR09")
 					(unit 1)
@@ -2824,7 +2824,7 @@
 			(uuid "b6ff83d3-5a10-4d24-b02e-591f48137234")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR08")
 					(unit 1)
@@ -2902,7 +2902,7 @@
 			(uuid "728bf986-e66e-4eda-89bb-810b822d4570")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR02")
 					(unit 1)
@@ -2980,7 +2980,7 @@
 			(uuid "ab7e4804-e7f7-4392-849a-07d9ea10906b")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR03")
 					(unit 1)
@@ -3058,7 +3058,7 @@
 			(uuid "69cc0a62-2cfd-464b-874f-ddc7af784b08")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR010")
 					(unit 1)
@@ -3319,7 +3319,7 @@
 			(uuid "4dff3bbf-1999-4387-8890-d469e1c46366")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "U1")
 					(unit 1)
@@ -3397,7 +3397,7 @@
 			(uuid "c9814420-0892-4ba9-b6f1-0296637b2995")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR012")
 					(unit 1)
@@ -3477,7 +3477,7 @@
 			(uuid "9ece35aa-97a2-45e7-88b9-2519f5e84f41")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR05")
 					(unit 1)
@@ -3555,7 +3555,7 @@
 			(uuid "78ae9bb5-b434-42d4-ba39-f3ebf5e5a1cb")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "#PWR01")
 					(unit 1)
@@ -3634,7 +3634,7 @@
 			(uuid "874e3efd-f03e-427b-84ad-18d615af4c6d")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "H3")
 					(unit 1)
@@ -3720,7 +3720,7 @@
 			(uuid "1b3f4da6-6ac6-4a3d-87f2-9b41dd150da3")
 		)
 		(instances
-			(project "esp_thread"
+			(project "thread_thermometer"
 				(path "/6d7cca4a-f1a8-4c54-a6da-e695555421f6"
 					(reference "J1")
 					(unit 1)

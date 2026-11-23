@@ -493,7 +493,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "chytre_svetlo.kicad_pro",
+    "filename": "thread_button.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -646,6 +646,14 @@
       "version": 1
     },
     "net_format_name": "",
+    "ngspice": {
+      "fix_include_paths": true,
+      "meta": {
+        "version": 0
+      },
+      "model_mode": 4,
+      "workbook_filename": ""
+    },
     "page_layout_descr_file": "",
     "plot_directory": "",
     "reuse_designators": true,
@@ -660,18 +668,18 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "chytre_svetlo.kicad_sch",
-        "name": "chytre_svetlo",
-        "uuid": "08a0ff65-90b1-4965-87d5-7e2560792ed9"
+        "filename": "thread_button.kicad_sch",
+        "name": "thread_button",
+        "uuid": "fbd2744d-2af6-44b8-9481-e75aff6ff1ca"
       }
     ],
-    "used_designators": "",
+    "used_designators": "#FLG2-4,#PWR3-5,#PWR7-11,#PWR13-14,#PWR18-20,H1-4,J3-4,SW3-4",
     "variants": []
   },
   "sheets": [
     [
-      "08a0ff65-90b1-4965-87d5-7e2560792ed9",
-      "chytre_svetlo"
+      "fbd2744d-2af6-44b8-9481-e75aff6ff1ca",
+      "Chytre_Tlacitko_BMS"
     ]
   ],
   "text_variables": {},

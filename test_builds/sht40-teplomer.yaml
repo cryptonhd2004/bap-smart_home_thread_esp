@@ -1,0 +1,77 @@
+esphome:
+  name: sht40-teplomer-thread
+
+esp32:
+  variant: ESP32C6
+  framework:
+    type: esp-idf
+
+external_components:
+  - source: github://DavidvtWout/esphome-matter@main
+
+logger:
+
+api:
+  encryption:
+    key: "JWc1LawCKmv9Dwxdxmz/mqHdQW8Rcq/foqKzE3lfm1M="
+
+ota:
+  - platform: esphome
+
+network:
+  enable_ipv6: true
+
+openthread:
+  device_type: FTD   # napájení ze sítě, router role
+  tlv: "0E080000000000010000000300000F4A0300001235060004001FFFE002080453941D7541003B0708FD978DB051298A07051077FABC98EE0421AFE411E3312B3D8AE0030E68612D7468726561642D32386435010228D50410396CF4DED6E2987D22B4919D049186540C0402A0F7F8"
+
+i2c:
+  sda: GPIO22
+  scl: GPIO23
+  scan: true
+
+sensor:
+  - platform: sht4x
+    address: 0x44
+    precision: High
+    temperature:
+      name: "Teplota SHT40"
+      id: sht_temp
+    humidity:
+      name: "Vlhkost SHT40"
+      id: sht_hum
+    update_interval: 10s
+
+interval:
+  - interval: 10s
+    then:
+      - logger.log:
+          format: "SHT40 teplota: %.2f C | vlhkost: %.1f %%RH"
+          args: ['id(sht_temp).state', 'id(sht_hum).state']
+
+matter:
+  vendor_name: "DavidSindelar_BP_VUT"
+  vendor_id: 0xFFF1
+  product_name: "Thread_SHT40_teplomer"
+  product_id: 0x8000
+  hardware_version: 1
+  hardware_version_string: "ESP32-C6_XIAO_SHT40_v1"
+  endpoints:
+    1:
+      temperature_sensor:
+        temperature: sht_temp
+    2:
+      humidity_sensor:
+        relative_humidity: sht_hum
+
+text_sensor:
+  - platform: matter
+    qr_code:
+      name: "Matter QR-code string"
+
+button:
+  - platform: template
+    name: "Matter Factory Reset"
+    on_press:
+      - matter.factory_reset:
+    disabled_by_default: true

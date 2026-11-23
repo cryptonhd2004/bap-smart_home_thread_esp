@@ -2738,7 +2738,7 @@
 			(uuid "23fc8e2c-c59a-4f87-8013-ed0620ea64f9")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR018")
 					(unit 1)
@@ -2816,7 +2816,7 @@
 			(uuid "2f832521-fae9-41b1-8591-74b25859ad43")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR09")
 					(unit 1)
@@ -2898,7 +2898,7 @@
 			(uuid "eeec5c6b-e54b-487b-a265-694da9dca0be")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "R2")
 					(unit 1)
@@ -2976,7 +2976,7 @@
 			(uuid "6aa1b769-9484-484a-b394-c09c4e0c765f")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR08")
 					(unit 1)
@@ -3054,7 +3054,7 @@
 			(uuid "7158c0e3-9d80-4432-baf0-b2e301c46cd9")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR03")
 					(unit 1)
@@ -3136,7 +3136,7 @@
 			(uuid "2b4b9ea9-228b-45f7-b8d5-b38b0d9926a2")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "R1")
 					(unit 1)
@@ -3215,7 +3215,7 @@
 			(uuid "516ba0f9-47a4-4478-b29c-4c9f3290cf80")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR010")
 					(unit 1)
@@ -3294,7 +3294,7 @@
 			(uuid "c419cf96-01a8-43b9-a4b5-200210623104")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR011")
 					(unit 1)
@@ -3388,7 +3388,7 @@
 			(uuid "31ff2f65-ae50-419d-a42b-e03b5e5ae204")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "J1")
 					(unit 1)
@@ -3467,7 +3467,7 @@
 			(uuid "a3fbc838-8158-4eb5-809b-8b4f4b786805")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "H2")
 					(unit 1)
@@ -3546,7 +3546,7 @@
 			(uuid "0af49230-1564-4541-9b7c-36ba3602d13b")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "TP1")
 					(unit 1)
@@ -3625,7 +3625,7 @@
 			(uuid "5f4232c2-cfa3-4d7b-8f87-ad293a4c2083")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "H1")
 					(unit 1)
@@ -3708,7 +3708,7 @@
 			(uuid "c4e74153-3368-4407-bbce-792be51badb1")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "J2")
 					(unit 1)
@@ -3786,7 +3786,7 @@
 			(uuid "81efd0c2-c009-472a-80d8-03e3b6b3a546")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR017")
 					(unit 1)
@@ -3868,7 +3868,7 @@
 			(uuid "0695ea47-4476-4020-82dd-884d61adab8d")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "C1")
 					(unit 1)
@@ -3947,7 +3947,7 @@
 			(uuid "6f489501-9680-49a3-8aa8-8ae1d9f8edc2")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR02")
 					(unit 1)
@@ -4025,7 +4025,7 @@
 			(uuid "3f9d136a-4370-444d-a1c0-8e58ebd04200")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR05")
 					(unit 1)
@@ -4104,7 +4104,7 @@
 			(uuid "4d090630-626d-451b-a4e3-082646aac306")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR01")
 					(unit 1)
@@ -4183,7 +4183,7 @@
 			(uuid "29bd0d46-d4f9-4414-a5b6-188ee5e5e3ca")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "TP3")
 					(unit 1)
@@ -4262,7 +4262,7 @@
 			(uuid "204a8fc8-27ca-452a-bd7d-d979fb02642a")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "TP2")
 					(unit 1)
@@ -4344,7 +4344,7 @@
 			(uuid "86cda1a6-8802-42fd-a707-32fdbda63b5a")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "C2")
 					(unit 1)
@@ -4605,7 +4605,7 @@
 			(uuid "a7de3371-f05d-4977-a6d5-c23444c1954e")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "U1")
 					(unit 1)
@@ -4684,7 +4684,7 @@
 			(uuid "3fe3ef87-e624-4294-b1c4-727475d6b16c")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR012")
 					(unit 1)
@@ -4762,7 +4762,7 @@
 			(uuid "edd3ff4f-c164-4f99-adcd-7e65ff88e28c")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR07")
 					(unit 1)
@@ -4840,7 +4840,7 @@
 			(uuid "0f88e30f-fb73-489a-9a33-79ee99fe724c")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR04")
 					(unit 1)
@@ -4919,7 +4919,7 @@
 			(uuid "5bd06c36-9267-4e46-af5f-dccf24af2a74")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "H4")
 					(unit 1)
@@ -4998,7 +4998,7 @@
 			(uuid "a18358f8-48b8-4ac8-90db-b51e3ce8bb97")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "H3")
 					(unit 1)
@@ -5076,7 +5076,7 @@
 			(uuid "648611a4-7a8c-4314-b670-6a8be3c0fad0")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR020")
 					(unit 1)
@@ -5154,7 +5154,7 @@
 			(uuid "2de51ef7-afbb-4979-86a2-d03c4b39ee83")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR019")
 					(unit 1)
@@ -5240,7 +5240,7 @@
 			(uuid "369a87d0-cd9a-4a49-a8f2-ed27772e3779")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "Q1")
 					(unit 1)
@@ -5319,7 +5319,7 @@
 			(uuid "f383df0d-0411-4881-b6ee-935eb08723bf")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR013")
 					(unit 1)
@@ -5397,7 +5397,7 @@
 			(uuid "810f5288-7334-433f-9c5e-f4f1b319dbe3")
 		)
 		(instances
-			(project "chytre_svetlo"
+			(project "thread_light"
 				(path "/08a0ff65-90b1-4965-87d5-7e2560792ed9"
 					(reference "#PWR06")
 					(unit 1)

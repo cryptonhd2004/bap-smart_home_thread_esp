@@ -60,7 +60,7 @@
           "hatch_smoothing_level": 0,
           "hatch_smoothing_value": 0.1,
           "hatch_thickness": 1.0,
-          "min_clearance": 0.0,
+          "min_clearance": 0.5,
           "min_island_area": 10.0,
           "min_thickness": 0.25,
           "pad_connection": 1,
@@ -493,7 +493,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "esp_thread.kicad_pro",
+    "filename": "thread_light.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -530,7 +530,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "./",
+      "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
@@ -660,18 +660,18 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "esp_thread.kicad_sch",
-        "name": "esp_thread",
-        "uuid": "6d7cca4a-f1a8-4c54-a6da-e695555421f6"
+        "filename": "thread_light.kicad_sch",
+        "name": "thread_light",
+        "uuid": "08a0ff65-90b1-4965-87d5-7e2560792ed9"
       }
     ],
-    "used_designators": "#PWR12-13,R1-2",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
     [
-      "6d7cca4a-f1a8-4c54-a6da-e695555421f6",
-      "esp_thread"
+      "08a0ff65-90b1-4965-87d5-7e2560792ed9",
+      "chytre_svetlo"
     ]
   ],
   "text_variables": {},

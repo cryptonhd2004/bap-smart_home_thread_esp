@@ -143,7 +143,7 @@
 		(property ki_fp_filters "MountingHole*Pad*")
 		(path "/caee4d4f-fb48-442b-9746-a7bdb1c243c3")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -277,7 +277,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/9e8972c3-0209-4508-9c7c-fcd8071ef09d")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -384,7 +384,7 @@
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/628a3fdb-408d-4963-9d55-aa19aae0bf54")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -656,7 +656,7 @@
 		(property ki_fp_filters "MountingHole*Pad*")
 		(path "/6260003f-e35a-450d-8bfa-952a9d940b61")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -790,7 +790,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/9c71d52f-44c7-4bea-bf6b-4442f76a09b4")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -897,7 +897,7 @@
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/4eaff3be-5f18-48e7-a2b0-0bcaa9f54b19")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1201,7 +1201,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/20bb3278-00fe-4f94-a974-bfb8dd918dee")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1407,7 +1407,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/12d19e19-78ee-4b69-9154-d1dd6db74272")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2365,7 +2365,7 @@
 		(property ki_fp_filters "CP_*")
 		(path "/9f197424-ae8f-40a3-af73-acfd44eea56e")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5020,7 +5020,7 @@
 		)
 		(path "/ab372f89-0489-4424-9ef4-2b987de73021")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5468,7 +5468,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz -90 -0 -0)
+				(xyz -90 0 0)
 			)
 		)
 	)
@@ -5530,7 +5530,7 @@
 		(property ki_fp_filters "Pin* Test*")
 		(path "/5324e89c-5e5e-4348-873d-98a47320f03d")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5638,7 +5638,7 @@
 		(property ki_fp_filters "MountingHole*Pad*")
 		(path "/ca17b22a-58a5-4650-b91f-e69c699c4c9e")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5769,7 +5769,7 @@
 		(property ki_fp_filters "SOT?23*")
 		(path "/e8e2518d-cb21-4bbd-8021-8400db0a4242")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -6101,7 +6101,7 @@
 		(property ki_fp_filters "CP_*")
 		(path "/7045b627-07d8-4f71-afe4-38bec7f30566")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -8604,7 +8604,7 @@
 		(property ki_fp_filters "MountingHole*Pad*")
 		(path "/5040c6e4-351b-4089-9134-0694466f5b78")
 		(sheetname "/")
-		(sheetfile "chytre_svetlo.kicad_sch")
+		(sheetfile "thread_light.kicad_sch")
 		(units
 			(unit
 				(name "A")
