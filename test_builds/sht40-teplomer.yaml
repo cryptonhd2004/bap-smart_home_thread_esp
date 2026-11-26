@@ -8,6 +8,7 @@ esp32:
 
 external_components:
   - source: github://DavidvtWout/esphome-matter@main
+    refresh: always
 
 logger:
 
@@ -19,6 +20,7 @@ ota:
   - platform: esphome
 
 network:
+  enable_ipv4: true
   enable_ipv6: true
 
 openthread:
@@ -26,8 +28,8 @@ openthread:
   tlv: "0E080000000000010000000300000F4A0300001235060004001FFFE002080453941D7541003B0708FD978DB051298A07051077FABC98EE0421AFE411E3312B3D8AE0030E68612D7468726561642D32386435010228D50410396CF4DED6E2987D22B4919D049186540C0402A0F7F8"
 
 i2c:
-  sda: GPIO22
-  scl: GPIO23
+  sda: GPIO21
+  scl: GPIO22
   scan: true
 
 sensor:
@@ -48,6 +50,25 @@ interval:
       - logger.log:
           format: "SHT40 teplota: %.2f C | vlhkost: %.1f %%RH"
           args: ['id(sht_temp).state', 'id(sht_hum).state']
+
+binary_sensor:
+  - platform: gpio
+    id: boot_button
+    name: "Boot tlačítko"
+    internal: true
+    pin:
+      number: GPIO9
+      ignore_strapping_warning: true
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    on_click:
+      - min_length: 5s
+        max_length: 30s
+        then:
+          - logger.log: "Boot tlačítko: Matter factory reset"
+          - matter.factory_reset:
 
 matter:
   vendor_name: "DavidSindelar_BP_VUT"

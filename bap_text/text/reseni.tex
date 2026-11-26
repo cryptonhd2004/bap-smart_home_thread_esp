@@ -220,19 +220,89 @@ lze provádět bez zásahu do zdrojového kódu.
 
 \section{Ekosystémy}
 
+Zařízení Matter jsou ovládána pomocí ovladače (controlleru) některého z~ekosystémů,
+který zařízení přidá do sítě a zprostředkuje uživateli jeho ovládání. U~zařízení
+v~síti Thread je kromě toho potřeba hraniční směrovač, který bývá součástí
+domovského hubu ekosystému. Následující podsekce porovnávají čtyři
+nejrozšířenější ekosystémy z~hlediska požadavků na Matter a Thread.
 
 \subsection{Home Assistant}
 
+Home Assistant komunikuje se zařízeními Matter prostřednictvím vlastního
+ovladače Matter, který běží jako samostatná aplikace (dříve doplněk) a s~integrací
+Matter je spojen přes rozhraní WebSocket~\cite{ha-matter}. Pro zařízení v~síti
+Thread je potřeba přítomnost hraničního směrovače. Dokumentace uvádí
+jako příklady Nest Hub (2. generace), HomePod mini nebo samotný Home Assistant
+s~aplikací OpenThread Border Router~\cite{ha-matter}. Integrace Thread se v~Home Assistantu zobrazí
+automaticky po zjištění hraničního směrovače~\cite{ha-thread}. Home
+Assistant může také sám pracovat jako hraniční směrovač, pokud je
+vybaven radiem IEEE~802.15.4, například modulem Connect ZBT-2 nebo
+počítačem Yellow~\cite{ha-thread}.
 
 \subsection{Google Home}
 
+Pro přidání zařízení Matter do ekosystému Google Home je potřeba hub, který
+je připojen k~domácí síti Wi-Fi. Pokud zařízení používají Thread, musí hub
+obsahovat také hraniční směrovač~\cite{google-matter-prepare}. Hraniční směrovač
+Thread podporují například Google Home Speaker (2026), Nest Hub
+(2. generace), Nest Hub Max, Nest Wifi Pro a Google TV Streamer
+(4K)~\cite{google-matter-prepare}. Zařízení Matter se po přidání připojí do
+stejné sítě jako hub, který je v~ekosystému Google používán~\cite{google-home-matter}.
 
 \subsection{Apple Home}
 
+V~ekosystému Apple Home je pro přidání příslušenství Matter obvykle potřeba
+domovský hub, kterým může být HomePod nebo Apple TV~\cite{apple-home-hub}. Příslušenství
+využívající Thread vyžaduje hub s~podporou Thread, například HomePod mini nebo
+Apple TV 4K (3. generace) Wi-Fi + Ethernet, případně podporovaný hraniční směrovač
+třetí strany~\cite{apple-home-hub}. Od verze systému iOS~18 lze příslušenství
+Matter přidat do aplikace Domácnost i bez domovského hubu, pro nejlepší
+funkci však společnost Apple hub doporučuje~\cite{apple-matter-pair}.
 
 \subsection{Samsung SmartThings}
 
+V~ekosystému SmartThings potřebuje zařízení Matter v~síti Thread ovladač
+Matter (hub SmartThings) a dostupný hraniční směrovač. Hraniční směrovač
+mají vestavěný například hub Samsung SmartThings v3, hub Aeotec Smart
+Home Hub a jeho nástupce Aeotec Smart Home Hub 2~\cite{smartthings-thread}.
+SmartThings je podle publikovaných zkušeností první platformou Matter,
+která umožňuje sjednotit síť Thread napříč hraničními
+směrovači~\cite{smartthings-thread}. 
 
 \section{Open Thread Border Router}
+\label{sec:otbr}
+
+Hraniční směrovač (Border Router) Thread propojuje síť Thread s~jinými
+sítěmi IP, například s~Wi-Fi nebo Ethernetem. Podle dokumentace
+OpenThread musí minimálně zajišťovat obousměrnou konektivitu IP mezi sítí
+Thread a sítí Wi-Fi nebo Ethernet a obousměrné vyhledávání služeb pomocí
+DNS: protokol mDNS na straně Wi-Fi nebo Ethernetu a protokol SRP na straně
+Thread~\cite{openthread-border-router}. Implementace hraničního směrovače
+projektu OpenThread se nazývá OpenThread Border Router (OTBR) a pracuje
+s~koprocesorem rádia (RCP), kde rádio IEEE~802.15.4 je řízeno samostatným
+čipem~\cite{openthread-border-router}.
+
+OTBR obsahuje řadu doplňkových funkcí. NAT64 umožňuje zařízením Thread
+komunikovat se sítěmi IPv4, přidělování předpon DHCPv6 (Prefix Delegation)
+zajišťuje zařízením sítě Thread předpony IPv6 a komponenta Border Agent umožňuje
+přidávání zařízení z~vnějšku, například z~mobilního telefonu~\cite{openthread-border-router}.
+Služba mDNS Publisher umožňuje externímu přidávacímu zařízení najít hraniční
+směrovač a jemu odpovídající síť Thread~\cite{openthread-border-router}.
+
+V~domácnosti může být hraničních směrovačů více. Pokud sdílejí síťové
+přihlašovací údaje, tvoří všechna zařízení jednu síť Thread a hraniční směrovače
+se vzájemně zálohují. Pokud je nesdílejí, vytvoří každý vlastní síť, ale zařízení
+mohou komunikovat díky protokolu IP i mezi sítěmi~\cite{threadgroup-multiple-networks}.
+
+V~Home Assistantu se funkce hraničního směrovače zapíná instalací aplikace
+OpenThread Border Router, která vyžaduje rádio IEEE~802.15.4 s~firmwarem
+OpenThread~\cite{ha-thread}. V~této práci je tato funkce zajištěna přímo
+v~Home Assistantu, který zároveň slouží jako ovladač Matter pro všechna tři
+zařízení. Rádio IEEE~802.15.4 poskytuje USB dongle SONOFF Zigbee 3.0 USB
+Dongle Plus V2 (model ZBDongle-E), který byl přeprogramován z~firmwaru
+koordinátoru Zigbee na firmware OpenThread RCP~\cite{sonoff-dongle}.
+V~nastavení aplikace OpenThread Border Router se vybere zařízení s~tímto
+firmwarem a rychlost sériové linky 460\,800~Bd~\cite{sonoff-thread-ha}.
+Po přeprogramování slouží dongle výhradně jako rádio sítě Thread.
 
 

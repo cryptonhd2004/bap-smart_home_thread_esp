@@ -1,0 +1,112 @@
+substitutions:
+  num_leds: "185"
+  max_current_ma: "2500.0"
+
+esphome:
+  name: svetlo-thread
+
+esp32:
+  variant: ESP32C6
+  framework:
+    type: esp-idf
+
+external_components:
+  - source: github://DavidvtWout/esphome-matter@main
+
+logger:
+
+api:
+  reboot_timeout: 0s
+  encryption:
+    key: "NmyWIFJzdt0VaOilMsL1t4zERr8b5C6fhdHOZ/5dYCQ="
+
+ota:
+  - platform: esphome
+
+network:
+  enable_ipv4: true
+  enable_ipv6: true
+
+openthread:
+  device_type: FTD   # napájení ze sítě, role směrovače (Router)
+  tlv: "0E080000000000010000000300000F4A0300001235060004001FFFE002080453941D7541003B0708FD978DB051298A07051077FABC98EE0421AFE411E3312B3D8AE0030E68612D7468726561642D32386435010228D50410396CF4DED6E2987D22B4919D049186540C0402A0F7F8"
+
+# POZOR: ESPHome nepovoluje soucasne `openthread:` (bez border_router) a `wifi:`.
+# Pro prepnuti na Wi-Fi zakomentuj `openthread:` a odkomentuj blok nize:
+# wifi:
+#   ssid: !secret wifi_ssid
+#   password: !secret wifi_password
+
+light:
+  - platform: esp32_rmt_led_strip
+    id: thread_light
+    name: "Chytré světlo"
+    pin: GPIO18
+    num_leds: ${num_leds}
+    chipset: ws2812
+    channel_colors: GRB
+    default_transition_length: 250ms
+    power_estimation:
+      ma_per_led_red: 16.0
+      ma_per_led_green: 11.0
+      ma_per_led_blue: 15.0
+      idle_ma_per_led: 0.5
+      max_current_ma: ${max_current_ma}
+
+binary_sensor:
+  - platform: gpio
+    id: boot_button
+    name: "BOOT tlačítko (Matter Reset)"
+    entity_category: config
+    pin:
+      number: GPIO9
+      inverted: true
+      ignore_strapping_warning: true
+      mode:
+        input: true
+        pullup: true
+    filters:
+      - delayed_on: 3s   # podržení 3 s proti nechtěnému resetu (pro okamžitý dej 50ms)
+    on_press:
+      - logger.log: "BOOT stisknuto -> provádím Matter Factory Reset"
+      - matter.factory_reset:
+
+sensor:
+  - platform: template
+    id: led_current_ma
+    name: "Odhadovaný odběr LED"
+    unit_of_measurement: "mA"
+    accuracy_decimals: 1
+    update_interval: 10s
+    lambda: return id(thread_light).get_estimated_current_ma();
+
+matter:
+  vendor_name: "DavidSindelar_BP_VUT"
+  vendor_id: 0xFFF1
+  product_name: "Thread_WS2812B_svetlo"
+  product_id: 0x8001
+  hardware_version: 1
+  hardware_version_string: "ESP32-C6_XIAO_WS2812B_v1"
+  endpoints:
+    1:
+      extended_color_light:
+        light_id: thread_light
+    2:
+      flow_sensor:
+        flow: led_current_ma
+
+text_sensor:
+  - platform: matter
+    qr_code:
+      name: "Matter QR-code string"
+
+button:
+  - platform: restart
+    name: "Restart"
+    entity_category: config
+  - platform: template
+    name: "Matter Factory Reset"
+    entity_category: config
+    on_press:
+      - matter.factory_reset:
+    disabled_by_default: true
